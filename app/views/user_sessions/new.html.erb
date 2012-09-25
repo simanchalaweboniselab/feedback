@@ -1,0 +1,40 @@
+<% if @user_session.errors.any? %>
+    <div class="alert alert-error" align="center">
+      <a class="close" data-dismiss="alert"> × </a>
+      <% @user_session.errors.full_messages.each do |msg| %>
+          <p><%= msg %></p>
+      <% end %>
+    </div>
+<%end%>
+
+<%= form_for @user_session, :html => {:id => "add_pg", :class => "form-horizontal",:style => "margin: auto; width:400px;"} do |f| %>
+    <fieldset>
+      <div id="legend">
+        <legend>Login</legend>
+      </div>
+      <div class="control-group">
+        <label class="control-label">
+          <%=f.label :email %>
+        </label>
+        <div class="controls">
+          <%= f.text_field :email%>
+        </div>
+      </div>
+      <div class="control-group">
+        <label class="control-label">
+          <%=f.label :password %>
+        </label>
+        <div class="controls">
+          <%= f.password_field :password %>
+        </div>
+      </div>
+      <div class="control-group">
+        <div class="controls">
+          <%= f.submit "Sign In", :class => "btn btn-success" %>
+        </div>
+      </div>
+    </fieldset>
+<% end %>
+
+
+

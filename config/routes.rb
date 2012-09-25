@@ -1,4 +1,15 @@
 Feedback::Application.routes.draw do
+
+  resources :users, :only => [:index]
+  namespace :admin do
+    resources :admins, :only => [:index] do
+      get :add_user, :on => :collection
+    end
+  end
+  resources :user_sessions, :only => [:new, :create, :destroy]
+  match 'login' => 'user_sessions#new', :as => :login
+  match 'logout' => 'user_sessions#destroy', :as => :logout
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
@@ -48,7 +59,7 @@ Feedback::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  # root :to => 'welcome#index'
+  root :to => 'admin/admins#index'
 
   # See how all your routes lay out with "rake routes"
 
