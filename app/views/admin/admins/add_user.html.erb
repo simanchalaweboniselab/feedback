@@ -1,0 +1,36 @@
+<% if @user.errors.any? %>
+    <div class="alert alert-error" align="center">
+      <a class="close" data-dismiss="alert"> × </a>
+      <% @user.errors.full_messages.each do |msg| %>
+          <p><%= msg %></p>
+      <% end %>
+    </div>
+<%end%>
+<%= form_tag create_user_admin_admins_path, :id => "add_pg", :class => "form-horizontal",:style => "margin: auto; width:400px;", :method => "POST" do %>
+    <fieldset>
+      <div id="legend">
+        <legend>Create User</legend>
+      </div>
+      <div class="control-group">
+        <label class="control-label">
+          Name
+        </label>
+        <div class="controls">
+          <%= text_field_tag :name, params[:name], :required => true %>
+        </div>
+      </div>
+      <div class="control-group">
+        <label class="control-label">
+          Email
+        </label>
+        <div class="controls">
+          <%= email_field_tag :email, params[:email], :required => true %>
+        </div>
+      </div>
+      <div class="control-group">
+        <div class="controls">
+          <%= submit_tag "Create User", :class => "btn btn-success" %>
+        </div>
+      </div>
+    </fieldset>
+<% end %>
