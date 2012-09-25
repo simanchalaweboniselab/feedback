@@ -11,6 +11,7 @@ class Admin::AdminsController < ApplicationController
   def create_user
     @user = User.create_user(params[:email], params[:name])
     if @user.valid?
+      UserMailer.set_password(@user).deliver
       redirect_to root_path, :notice => "User created successfully!!!!!!!!!!"
     else
       render :add_user

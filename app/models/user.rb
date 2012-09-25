@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
   acts_as_authentic
 
   validates :name, :email, :password, :presence => true;
+  validates :password, :length => {:minimum => 4}
 
   def self.create_user(email, name)
     password = SecureRandom.base64(15).tr('+/=', '').strip.delete("\n")
