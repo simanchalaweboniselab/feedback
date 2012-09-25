@@ -5,5 +5,16 @@ class Admin::AdminsController < ApplicationController
   end
 
   def add_user
+    @user = User.new
+  end
+
+  def create_user
+    @user = User.create_user(params[:email], params[:name])
+    if @user.valid?
+      redirect_to root_path, :notice => "User created successfully!!!!!!!!!!"
+    else
+      render :add_user
+    end
+    #user = User.create(:name => params[:name], :email => params[:email], :password => )
   end
 end
