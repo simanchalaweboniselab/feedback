@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
   has_many :to_feedbacks, :class_name => UserFeedback, :foreign_key => :to_user_id
 
   validates :name, :email, :password, :presence => true;
+  validates :password, :length => {:minimum => 4}
 
   def self.create_user(email, name)
     password = SecureRandom.base64(15).tr('+/=', '').strip.delete("\n")
