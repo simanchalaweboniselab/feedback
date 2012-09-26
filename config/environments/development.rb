@@ -34,13 +34,5 @@ Feedback::Application.configure do
 
   # Expands the lines which load the assets
   config.assets.debug = true
-  config.action_mailer.smtp_settings = {
-      :address => "smtp.gmail.com",
-      :port => 587,
-      :authentication => "plain",
-      :enable_starttls_auto => true,
-      :user_name => 'pansingh@weboniselab.com',
-      :password => 'pansingh6186'
-  }
 end
 HOST_DOMAIN = "http://local.webonisefeedback.com"
