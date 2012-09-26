@@ -18,4 +18,8 @@ class Admin::AdminsController < ApplicationController
     end
     #user = User.create(:name => params[:name], :email => params[:email], :password => )
   end
+
+  def assign_user
+    @users = User.where(:role => "user")
+  end
 end
