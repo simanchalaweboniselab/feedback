@@ -10,6 +10,6 @@ class User < ActiveRecord::Base
 
   def self.create_user(email, name)
     password = SecureRandom.base64(15).tr('+/=', '').strip.delete("\n")
-    self.create(:email => email, :name => name, :password => password, :password_confirmation => password)
+    self.create!(:email => email, :name => name, :password => password, :password_confirmation => password)
   end
 end
