@@ -1,6 +1,9 @@
 Feedback::Application.routes.draw do
 
-  resources :users, :only => [:index]
+  resources :users, :only => [:index] do
+    get :new_password, :on => :member
+    put :create_password, :on => :member
+  end
   namespace :admin do
     resources :admins, :only => [:index] do
       get :add_user, :on => :collection
