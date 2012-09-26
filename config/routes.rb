@@ -8,6 +8,7 @@ Feedback::Application.routes.draw do
     resources :admins, :only => [:index] do
       get :add_user, :on => :collection
       post :create_user, :on => :collection
+      get :assign_user, :on => :collection
     end
   end
   resources :user_sessions, :only => [:new, :create, :destroy]
