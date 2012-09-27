@@ -5,7 +5,8 @@ class UserMailer < ActionMailer::Base
     mail(:to => user.email, :from => "pansingh@weboniselab.com", :subject => "welcome to webonise", :content_type => "text/html")
   end
 
-  def demo(user)
+  def alert_mail(user)
+    @user = user
     mail(:to => user.email, :from => "pansingh@weboniselab.com", :subject => "welcome to webonise", :content_type => "text/html")
   end
 end
