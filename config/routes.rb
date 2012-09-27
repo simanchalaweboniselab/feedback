@@ -9,6 +9,9 @@ Feedback::Application.routes.draw do
       get :add_user, :on => :collection
       post :create_user, :on => :collection
       get :assign_user, :on => :collection
+      get :user_list, :on => :collection
+      get :to_feedback, :on => :member
+      get :from_feedback, :on => :member
     end
   end
   resources :user_sessions, :only => [:new, :create, :destroy]

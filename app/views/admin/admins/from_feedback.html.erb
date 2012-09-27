@@ -1,0 +1,28 @@
+<table class="table table-bordered">
+  <colgroup>
+    <col class="span2">
+    <col class="span3">
+    <col class="span3">
+    <col class="span3">
+  </colgroup>
+  <caption>
+    <h2>Feedback List</h2>
+  </caption>
+  <thead>
+  <tr>
+    <th>Name</th>
+    <th>Assigned Date</th>
+    <th>Date</th>
+    <th>Feedback</th>
+  </tr>
+  </thead>
+  <% @feedbacks.each do |feedback| %>
+      <tr>
+        <td><%= user_name(feedback.to_id) %></td>
+        <td><%= date(feedback.created_at) %></td>
+        <td><%= date(feedback.updated_at) if !feedback.feedback.to_s.empty? %></td>
+        <td><%= feedback.feedback if !feedback.feedback.to_s.empty? %></td>
+      </tr>
+  <% end %>
+</table>
+<%= link_to "Back", user_list_admin_admins_path, :class => "btn" %>
