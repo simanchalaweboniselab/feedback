@@ -11,4 +11,13 @@ class UserFeedback < ActiveRecord::Base
       return false;
     end
   end
+
+  def self.alert_mail
+    feedbacks = self.where("created_at >=  '#{Time.now - (1*7*24*60*60)}' AND created_at =  updated_at")
+    users = User.where(:id => feedbacks.collect{|feedback| feedback.from_id}.uniq)
+    users.each do |user|
+      names = User.where(:id => feedbacks.collect{|feedback|feedback.to_id if feedback.from_id == 6}).map(&:name).join(', ')
+      UserMailer.alert_mail(user, names).deliver
+    end
+  end
 end

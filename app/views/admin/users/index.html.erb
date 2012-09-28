@@ -1,0 +1,30 @@
+<table class="table table-bordered">
+  <colgroup>
+    <col class="span2">
+    <col class="span3">
+    <col class="span3">
+    <col class="span3">
+  </colgroup>
+  <caption>
+    <h2>User List</h2>
+  </caption>
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>Name</th>
+    <th>Email</th>
+    <th>Feedback</th>
+  </tr>
+  </thead>
+  <% @users.each do |user| %>
+      <tr>
+        <td><%= user.id %></td>
+        <td><%= user.name %></td>
+        <td><%= user.email %></td>
+        <td>
+          <%= link_to "Taken",to_feedback_admin_user_path(user), :class => "btn btn-success" %>
+          <%= link_to "Given",from_feedback_admin_user_path(user), :class => "btn btn-success" %>
+        </td>
+      </tr>
+  <% end %>
+</table>

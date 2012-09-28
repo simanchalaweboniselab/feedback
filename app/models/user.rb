@@ -12,4 +12,11 @@ class User < ActiveRecord::Base
     password = SecureRandom.base64(15).tr('+/=', '').strip.delete("\n")
     self.create!(:email => email, :name => name, :password => password, :password_confirmation => password)
   end
+
+  #def self.user_mail
+  #  @users = self.where(:role => "user")
+  #  @users.each do |user|
+  #    UserMailer.demo(user).deliver
+  #  end
+  #end
 end
