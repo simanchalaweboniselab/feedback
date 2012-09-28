@@ -1,0 +1,26 @@
+<table class="table">
+  <colgroup>
+    <col class="span3">
+    <col class="span3">
+    <col class="span3">
+  </colgroup>
+  <thead>
+  <caption>
+    <h2><%= logged_in_user.name%></h2>
+  </caption>
+  <tr>
+    <th>Weboniser</th>
+    <th>Feedback</th>
+    <th></th>
+  </tr>
+  </thead>
+  <% @feedbacks.each do |feedback| %>
+      <tr>
+        <%= form_tag "/users/#{feedback.id}/update_feedback", :method => "PUT" do %>
+            <td><%= user_name(feedback.to_id) %></td>
+            <td><%= text_field_tag :feedback, params[:feedback], :size => 50, :maxlength => 50, :required => true %></td>
+            <td><%= submit_tag "submit", :class => "btn btn-success" %></td>
+        <% end %>
+      </tr>
+  <% end %>
+</table>

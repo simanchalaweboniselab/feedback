@@ -14,3 +14,7 @@
 //= require jquery_ujs
 //= require twitter/bootstrap
 //= require_tree .
+
+$("#feedback_submit").live("click",function(event){
+    alert($(this).parent().parent().find('td:eq(2)').value);
+});
