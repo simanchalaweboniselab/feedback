@@ -13,10 +13,10 @@ class User < ActiveRecord::Base
     self.create(:email => email, :name => name, :password => password, :password_confirmation => password)
   end
 
-  def self.user_mail
-    @users = self.where(:role => "user")
-    @users.each do |user|
-      UserMailer.demo(user).deliver
-    end
-  end
+  #def self.user_mail
+  #  @users = self.where(:role => "user")
+  #  @users.each do |user|
+  #    UserMailer.demo(user).deliver
+  #  end
+  #end
 end

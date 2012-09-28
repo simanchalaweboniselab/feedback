@@ -1,12 +1,12 @@
 <% if current_admin %>
     <ul class="nav">
-      <li ><%= link_to "Users", user_list_admin_admins_path %></li>
+      <li ><%= link_to "Users", admin_users_path %></li>
     </ul>
     <ul class="nav">
       <li ><%= link_to "Add User", add_user_admin_admins_path %></li>
     </ul>
     <ul class="nav">
-      <li ><%= link_to "Assign User", assign_user_admin_admins_path %></li>
+      <li ><%= link_to "Assign User", assign_user_admin_users_path %></li>
     </ul>
 <% end %>
 <% if current_admin or current_user %>

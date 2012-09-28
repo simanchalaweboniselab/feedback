@@ -8,8 +8,10 @@ Feedback::Application.routes.draw do
     resources :admins, :only => [:index] do
       get :add_user, :on => :collection
       post :create_user, :on => :collection
+
+    end
+    resources :users, :only => [:index] do
       get :assign_user, :on => :collection
-      get :user_list, :on => :collection
       get :to_feedback, :on => :member
       get :from_feedback, :on => :member
     end
