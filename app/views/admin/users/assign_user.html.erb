@@ -1,0 +1,55 @@
+<% content_for :head do %>
+    <script type="text/javascript">
+        $(document).ready(function(){
+        var users = <%= raw @users.to_json %>;
+        auto_fill(users)
+        });
+    </script>
+<% end %>
+<input type="button" value="Assign User" class="btn btn-success pull-right" id = "assign_user" />
+<div class="clearfix"></div>
+<div class="content">
+
+  <div class="block-box">
+    <div class="left-column">
+      <input type="text" class="large from_user" name="from_user" placeholder="Select User"/>
+      <span class="divider"></span>
+      <input type="text" class="large to_user_first" name="to_user_first" placeholder="Select User"/>
+      <input type="text" class="large to_user_second" name="to_user_second" placeholder="Select User"/>
+      <input type="text" class="large to_user_third" name="to_user_third" placeholder="Select User"/>
+    </div>
+    <div class="center-column">
+      <input type="button" class="btn btn-success small save" name="save" value="Save"/>
+      <input type="button" class="btn btn-info small edit" name="edit" value="Edit"/>
+      <input type="button" class="btn btn-danger small delete" name="delete" value="Delete"/>
+    </div>
+  </div>
+  <div class="block-box">
+    <div class="left-column">
+      <input type="text" class="large from_user" name="from_user" placeholder="Select User"/>
+      <span class="divider"></span>
+      <input type="text" class="large to_user_first" name="to_user_first" placeholder="Select User"/>
+      <input type="text" class="large to_user_second" name="to_user_second" placeholder="Select User"/>
+      <input type="text" class="large to_user_third" name="to_user_third" placeholder="Select User"/>
+    </div>
+    <div class="center-column">
+      <input type="button" class="btn btn-success small save" name="save" value="Save"/>
+      <input type="button" class="btn btn-info small edit" name="edit" value="Edit"/>
+      <input type="button" class="btn btn-danger small delete" name="delete" value="Delete"/>
+    </div>
+  </div>
+  <div class="block-box">
+    <div class="left-column">
+      <input type="text" class="large from_user" name="from_user" placeholder="Select User"/>
+      <span class="divider"></span>
+      <input type="text" class="large to_user_first" name="to_user_first" placeholder="Select User"/>
+      <input type="text" class="large to_user_second" name="to_user_second" placeholder="Select User"/>
+      <input type="text" class="large to_user_third" name="to_user_third" placeholder="Select User"/>
+    </div>
+    <div class="center-column">
+      <input type="button" class="btn btn-success small save" name="save" value="Save"/>
+      <input type="button" class="btn btn-info small edit" name="edit" value="Edit"/>
+      <input type="button" class="btn btn-danger small delete" name="delete" value="Delete"/>
+    </div>
+  </div>
+</div>
