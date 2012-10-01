@@ -6,13 +6,13 @@
     <col class="span3">
   </colgroup>
   <caption>
-    <h2>Feedback List</h2>
+    <h2>Received Feedback List</h2>
   </caption>
   <thead>
-  <tr>
+  <tr style = "background-color: #A2AFCC;">
     <th>Name</th>
     <th>Assigned Date</th>
-    <th>Date</th>
+    <th>Received Date</th>
     <th>Feedback</th>
   </tr>
   </thead>
@@ -26,3 +26,4 @@
   <% end %>
 </table>
 <%= link_to "Back", admin_users_path, :class => "btn" %>
+<%= page_navigation_links @feedbacks %>

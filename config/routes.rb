@@ -6,6 +6,7 @@ Feedback::Application.routes.draw do
     put :update_feedback, :on => :member
     get :give_feedback, :on => :collection
     get :received_feedback, :on => :collection
+    get :given_feedback, :on => :collection
   end
   namespace :admin do
     resources :admins, :only => [:index] do

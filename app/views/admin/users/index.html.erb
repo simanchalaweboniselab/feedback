@@ -9,7 +9,7 @@
     <h2>User List</h2>
   </caption>
   <thead>
-  <tr>
+  <tr style = "background-color: #A2AFCC;">
     <th>ID</th>
     <th>Name</th>
     <th>Email</th>
@@ -22,9 +22,10 @@
         <td><%= user.name %></td>
         <td><%= user.email %></td>
         <td>
-          <%= link_to "Taken",to_feedback_admin_user_path(user), :class => "btn btn-success" %>
+          <%= link_to "Received",to_feedback_admin_user_path(user), :class => "btn btn-success" %>
           <%= link_to "Given",from_feedback_admin_user_path(user), :class => "btn btn-success" %>
         </td>
       </tr>
   <% end %>
 </table>
+<%= page_navigation_links @users %>
