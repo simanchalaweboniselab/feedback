@@ -15,6 +15,33 @@
 //= require twitter/bootstrap
 //= require_tree .
 
-$("#feedback_submit").live("click",function(event){
-    alert($(this).parent().parent().find('td:eq(2)').value);
+
+$(document).ready(function(){
+    $("#assign_user").live("click",function(){
+        alert("test");
+    });
 });
+function auto_fill(users) {
+    var data = $(users ).map(function() {
+        return {
+            value: $( "name", this ).text() ,
+            id: $( "id", this ).text()
+        };
+    }).get();
+//    alert(names);
+    $( ".from_user" ).autocomplete({
+        source: function( request, response ) {
+            response( $.map( users, function( item ) {
+                return {
+                    label: item.name,
+                    value: item.name,
+                    id: item.id
+                }
+            }));
+        },
+        dataType: "json",
+        select: function(event, ui) {
+            alert(ui.item.id);
+        }
+    });
+}
