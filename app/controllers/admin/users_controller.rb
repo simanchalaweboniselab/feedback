@@ -11,7 +11,8 @@ class Admin::UsersController < ApplicationController
 
   def get_from_user_list
     @feedback = UserFeedback.where("created_at >=  '#{Time.now - (1*7*24*60*60)}'")
-    @users = User.where("id not in(?) and role = 'user'", @feedback.collect{|f| f.from_id}.zip(params[:from_user] ? params[:from_user] : []).flatten.compact.collect{|s| s.to_i})
+    feedback = @feedback.collect{|f| f.from_id}.zip(params[:from_user] ? params[:from_user] : []).flatten.compact.collect{|s| s.to_i}
+    @users = User.where("id not in(?) and role = 'user'", feedback.present? ? feedback : '' )
     render :json => @users
   end
 
@@ -21,7 +22,12 @@ class Admin::UsersController < ApplicationController
   end
 
   def create_assign_user
+    logger.info "###################{params.inspect}"
+    0..3.times do |i|
+      UserFeedback.create(:from_id => params[:from_user], :to_id => params["to_user_#{i}"])
+    end
 
+    render :json => {:success => true}
   end
 
   def to_feedback

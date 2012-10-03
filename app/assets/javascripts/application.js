@@ -25,7 +25,6 @@ $(document).ready(function(){
 
         $( ".from_user" ).live("focusin",function(event){
             current = $("body");
-            $(this).removeAttr("alt");
             ids1 = new Array();
             current.find(".from_user").each(function(){
                 if($(this).attr("alt"))
@@ -33,6 +32,7 @@ $(document).ready(function(){
                     ids1.push($(this).attr("alt"));
                 }
             });
+            ids1.remByVal($(this).attr("alt"));
         }).autocomplete({
                 source: function( request, response ) {
                     $.ajax({
@@ -74,7 +74,6 @@ $(document).ready(function(){
 
         $( ".to_user").live("focusin",function(event){
             current = $(this).parent();
-            $(this).removeAttr("alt");
             ids = new Array();
             ids.push(current.find(".from_user").attr("alt"));
             current.find(".to_user").each(function(){
@@ -82,7 +81,8 @@ $(document).ready(function(){
                 {
                     ids.push($(this).attr("alt"));
                 }
-            })
+            });
+            ids.remByVal($(this).attr("alt"));
         }).autocomplete({
                 source: function( request, response) {
                     $.ajax({
@@ -131,10 +131,33 @@ $(document).ready(function(){
         });
         if(flag == 0){
             $(".block-box").each(function(){
-
+                current = $(this);
+                current.find(".center-column").html('<div class="load"> </div>');
+                $.ajax({
+                    url: "/admin/users/create_assign_user",
+                    data: {"from_user": current.find(".from_user").attr("alt"), "to_user_0": current.find(".to_user_first").attr("alt"), "to_user_1": current.find(".to_user_second").attr("alt"), "to_user_2": current.find(".to_user_third").attr("alt")},
+                    dataType: "json",
+                    success: function(data){
+                       if(data["success"]== true)
+                           current.find(".center-column").html('<div class="check"> </div>');
+                       else
+                           current.find(".center-column").html('<div class="cross"> </div> <div class="tooltip fade right in" style="display: block; "><div class="tooltip-arrow"></div><div class="tooltip-inner">Something Went Wrong!!!</div></div>');
+                    }
+                });
             })
         }
     });
+
+
+    Array.prototype.remByVal = function(val) {
+        for (var i = 0; i < this.length; i++) {
+            if (this[i] === val) {
+                this.splice(i, 1);
+                i--;
+            }
+        }
+        return this;
+    }
 
 
 });
