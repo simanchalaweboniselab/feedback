@@ -16,6 +16,9 @@ Feedback::Application.routes.draw do
     end
     resources :users, :only => [:index] do
       get :assign_user, :on => :collection
+      get :get_from_user_list, :on => :collection
+      get :get_to_user_list, :on => :collection
+      get :create_assign_user, :on => :collection
       get :to_feedback, :on => :member
       get :from_feedback, :on => :member
       get :assigned_feedback, :on => :member

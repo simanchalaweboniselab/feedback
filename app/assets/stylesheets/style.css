@@ -1,5 +1,5 @@
 .block-box{
-    width: 1110px;
+    width: 1140px;
     margin: auto;
 }
 
@@ -60,4 +60,46 @@ ul.ui-autocomplete{
     text-decoration: none;
     padding: 6px 0 6px 0;
     border-bottom:1px solid #666;
+}
+
+.ui-autocomplete-loading {
+    background: white url('loader.gif') right center no-repeat;
+}
+
+.to_user_first{
+    margin-left: 20px;
+}
+
+.error{
+    border: thin solid #ff0000;
+}
+
+p.error-p{
+    color: #ff0000;
+}
+
+.tooltip{
+    margin-left: 30px !important;
+}
+
+.cross{
+    background: white url('cross.png') no-repeat;
+    height: 20px;
+    width: 20px;
+    margin: 8px 10px 0 0;
+    float: left;
+}
+
+.check{
+    background: white url('check.png') no-repeat;
+    height: 20px;
+    width: 20px;
+    margin: 8px 10px 0 0;
+}
+
+.load{
+    background: white url('loader.gif') no-repeat;
+    height: 20px;
+    width: 20px;
+    margin: 8px 10px 0 0;
 }
