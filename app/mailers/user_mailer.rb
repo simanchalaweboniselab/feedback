@@ -8,6 +8,6 @@ class UserMailer < ActionMailer::Base
   def alert_mail(user, names)
     @user = user
     @names = names
-    mail(:to => user.email, :from => "pansingh@weboniselab.com", :subject => "welcome to webonise", :content_type => "text/html")
+    mail(:to => user.email, :from => "pansingh@weboniselab.com", :subject => "feedback to weboniser", :content_type => "text/html")
   end
 end
