@@ -3,6 +3,10 @@ Feedback::Application.routes.draw do
   resources :users, :only => [:index] do
     get :new_password, :on => :member
     put :create_password, :on => :member
+    put :update_feedback, :on => :member
+    get :give_feedback, :on => :collection
+    get :received_feedback, :on => :collection
+    get :given_feedback, :on => :collection
   end
   namespace :admin do
     resources :admins, :only => [:index] do

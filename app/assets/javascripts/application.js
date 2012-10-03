@@ -15,7 +15,7 @@
 //= require twitter/bootstrap
 //= require_tree .
 
-var current;
+
 
 $(document).ready(function(){
     $("#assign_user").live("click",function(){

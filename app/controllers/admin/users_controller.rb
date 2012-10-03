@@ -3,7 +3,7 @@ class Admin::UsersController < ApplicationController
   before_filter :find_user, :only => [:to_feedback, :from_feedback]
 
   def index
-    @users =  User.where(:role => "user")
+    @users =  User.where(:role => "user").paginate(:page => params[:page], :per_page => 10)
   end
   def assign_user
     @users = User.where(:role => "user")
@@ -22,7 +22,6 @@ class Admin::UsersController < ApplicationController
   end
 
   def create_assign_user
-    logger.info "###################{params.inspect}"
     0..3.times do |i|
       UserFeedback.create(:from_id => params[:from_user], :to_id => params["to_user_#{i}"])
     end
@@ -31,11 +30,11 @@ class Admin::UsersController < ApplicationController
   end
 
   def to_feedback
-    @feedbacks =  @user.to
+    @feedbacks =  @user.to.paginate(:page => params[:page], :per_page => 10).order('updated_at desc')
   end
 
   def from_feedback
-    @feedbacks =  @user.from
+    @feedbacks =  @user.from.paginate(:page => params[:page], :per_page => 10).order('created_at desc')
   end
 
   protected

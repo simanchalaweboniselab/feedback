@@ -8,9 +8,24 @@
     <ul class="nav">
       <li ><%= link_to "Assign User", assign_user_admin_users_path %></li>
     </ul>
-<% end %>
-<% if current_admin or current_user %>
     <ul class="nav pull-right">
       <li ><%= link_to "logout", logout_path %></li>
+    </ul>
+<% end %>
+<% if current_user %>
+    <ul class="nav">
+      <li ><%= link_to "Give Feedback",  give_feedback_users_path %></li>
+    </ul>
+    <ul class="nav">
+      <li ><%= link_to "Received Feedback",  received_feedback_users_path %></li>
+    </ul>
+    <ul class="nav">
+      <li ><%= link_to "Given Feedback",  given_feedback_users_path %></li>
+    </ul>
+    <ul class="nav pull-right">
+      <li ><%= link_to "logout", logout_path %></li>
+    </ul>
+    <ul class="nav pull-right">
+      <li > <%=link_to "welcome #{logged_in_user.name} ",nil , :remote => true %></li>
     </ul>
 <% end %>
