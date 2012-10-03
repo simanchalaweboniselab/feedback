@@ -18,13 +18,28 @@
 
 
 $(document).ready(function(){
+    $("#remove-contributor-recipients").live("click",function(){
+        $(this).parent().parent().parent().remove();
+    });
+    $("#remove-contributor-recipients1").live("click",function(){
+        $(this).parent().parent().remove();
+        if($("#feedback-box").length == 0){
+            document.getElementById('save_all_user').style.visibility='hidden';
+        }
+    });
+
+
     $("#assign_user").live("click",function(){
-        $("#assign_user_content").append('<div class="block-box"><div class="left-column"> <input type="text" class="large from_user" name="from_user" placeholder="Select User"/><input type="text" class="large to_user to_user_first" name="to_user_first" placeholder="Select User" disabled="disabled"/> <input type="text" class="large to_user to_user_second" name="to_user_second" placeholder="Select User" disabled="disabled"/> <input type="text" class="large to_user to_user_third" name="to_user_third" placeholder="Select User" disabled="disabled"/></div><div class="center-column"></div></div>') ;
+        document.getElementById('contributor-recipients').style.visibility='visible';
+        document.getElementById('save_all_user').style.visibility='visible';
+        document.getElementById('message1').style.visibility='visible';
+        $("#message").remove();
+        $("#assign_user_content").append('<div class="block-box" id = "feedback-box"><div class="left-column"> <input type="text" class="large from_user" name="from_user" placeholder="Select User"/><input type="text" class="large to_user to_user_first" name="to_user_first" placeholder="Select User" disabled="disabled"/> <input type="text" class="large to_user to_user_second" name="to_user_second" placeholder="Select User" disabled="disabled"/> <input type="text" class="large to_user to_user_third" name="to_user_third" placeholder="Select User" disabled="disabled"/></div><div class="center-column"><input type="image" src="/assets/cross.png" id="remove-contributor-recipients1"/></div></div>') ;
 
         var ids1 = new Array();
 
         $( ".from_user" ).live("focusin",function(event){
-            current = $("body");
+            current = $("#assign_user_content");
             ids1 = new Array();
             current.find(".from_user").each(function(){
                 if($(this).attr("alt"))
@@ -126,7 +141,7 @@ $(document).ready(function(){
             if($(this).val()==""){
                 flag = 1;
                 $(this).addClass("error");
-                $(this).parent().parent().find(".center-column").html('<div class="cross"> </div> <div class="tooltip fade right in" style="display: block; "><div class="tooltip-arrow"></div><div class="tooltip-inner">All fields are mandatory!!!</div></div>');
+                $(this).parent().parent().find(".center-column").html('<div style="float: left;"><input type="image" src="/assets/cross.png" id="remove-contributor-recipients"/> </div> <div class="tooltip fade right in" style="display: block; "><div class="tooltip-arrow"></div><div class="tooltip-inner">All fields are mandatory!!!</div></div>');
             }
         });
         if(flag == 0){
@@ -138,10 +153,13 @@ $(document).ready(function(){
                     data: {"from_user": current.find(".from_user").attr("alt"), "to_user_0": current.find(".to_user_first").attr("alt"), "to_user_1": current.find(".to_user_second").attr("alt"), "to_user_2": current.find(".to_user_third").attr("alt")},
                     dataType: "json",
                     success: function(data){
-                       if(data["success"]== true)
-                           current.find(".center-column").html('<div class="check"> </div>');
-                       else
-                           current.find(".center-column").html('<div class="cross"> </div> <div class="tooltip fade right in" style="display: block; "><div class="tooltip-arrow"></div><div class="tooltip-inner">Something Went Wrong!!!</div></div>');
+                        if(data["success"]== true){
+                            current.find(".center-column").html('<div class="check"> </div>');
+                            document.getElementById('save_all_user').style.visibility='hidden';
+                            document.getElementById('assign_user').style.visibility='hidden';
+                        }
+                        else
+                            current.find(".center-column").html('<div><input type="image" src="/assets/cross.png" id="remove-contributor-recipients"/></div> <div class="tooltip fade right in" style="display: block; "><div class="tooltip-arrow"></div><div class="tooltip-inner">Something Went Wrong!!!</div></div>');
                     }
                 });
             })

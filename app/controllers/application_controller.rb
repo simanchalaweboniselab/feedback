@@ -9,7 +9,6 @@ class ApplicationController < ActionController::Base
   end
 
   def user_should_be_login
-    logger.info "===================================================#{current_user.inspect}"
     redirect_to "/login" unless current_user
   end
 
@@ -28,7 +27,6 @@ class ApplicationController < ActionController::Base
     user.role == "admin" if !user.nil?
   end
   def current_user
-    logger.info "=========================================current user=#{user.inspect if !user.nil?}"
     user.role == "user" if !user.nil?
   end
   def logged_in_user
