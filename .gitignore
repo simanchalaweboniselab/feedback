@@ -14,4 +14,3 @@
 /log/*.log
 /tmp
 /.idea
-/config/initializers/setup_mail.rb
