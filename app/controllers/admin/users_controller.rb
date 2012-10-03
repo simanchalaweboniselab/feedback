@@ -1,6 +1,6 @@
 class Admin::UsersController < ApplicationController
   before_filter :admin_should_be_login
-  before_filter :find_user, :only => [:to_feedback, :from_feedback]
+  before_filter :find_user, :only => [:to_feedback, :from_feedback, :assigned_feedback]
 
   def index
     @users =  User.where(:role => "user").paginate(:page => params[:page], :per_page => 10)
@@ -15,6 +15,10 @@ class Admin::UsersController < ApplicationController
 
   def from_feedback
     @feedbacks =  @user.from.paginate(:page => params[:page], :per_page => 10).order('created_at desc')
+  end
+
+  def assigned_feedback
+    @feedbacks = @user.from.where(:feedback => nil).paginate(:page => params[:page], :per_page => 10).order('created_at desc')
   end
 
   protected
