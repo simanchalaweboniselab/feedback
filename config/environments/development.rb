@@ -35,4 +35,4 @@ Feedback::Application.configure do
   # Expands the lines which load the assets
   config.assets.debug = true
 end
-HOST_DOMAIN = "http://local.webonisefeedback.com"
+HOST_DOMAIN = "http://feedback.weboapps.com"
