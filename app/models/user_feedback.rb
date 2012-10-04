@@ -1,5 +1,7 @@
+require "execute"
 class UserFeedback < ActiveRecord::Base
-  attr_accessible :feedback, :from_id, :to_id
+  extend Execute
+  attr_accessible :feedback, :from_id, :to_id, :created_at
 
   belongs_to :from, :class_name => User
   belongs_to :to, :class_name => User
@@ -15,13 +17,31 @@ class UserFeedback < ActiveRecord::Base
     end
   end
 
+  def self.assign_feedback(params)
+    record = []
+    0..3.times do |i|
+      weekday = DateTime.now.wday
+      count = 0
+      #self.create(:from_id => params[:from_user], :to_id => params["to_user_#{i}"])
+      while(weekday <= 5)
+        record << "(#{params[:from_user]}, #{params["to_user_#{i}"]}, '#{Time.now.in_time_zone(TZInfo::Timezone.get('Asia/Kolkata'))+ (count*24*60*60 if count != 0).to_i}')"
+        weekday = weekday + 1
+        count = count + 1
+      end
+    end
+    sql = "INSERT INTO user_feedbacks (from_id, to_id, created_at) VALUES #{record.join(", ")}"
+    execute_query sql
+    return true
+  end
+
   def self.alert_mail
-    #feedbacks = self.where("created_at >=  '#{Time.now - (1*7*24*60*60)}' AND created_at =  updated_at")
-    feedbacks = self.where("created_at >=  '#{Time.now - (1*7*24*60*60)}' AND feedback is NULL")
+    #feedbacks = self.where("created_at >=  '#{Time.now - (1*7*24*60*60)}' AND feedback is NULL")
+    feedbacks = self.where(:created_at => Time.now.in_time_zone(TZInfo::Timezone.get('Asia/Kolkata')).beginning_of_day..Time.now.in_time_zone(TZInfo::Timezone.get('Asia/Kolkata')).end_of_day)
     users = User.where(:id => feedbacks.collect{|feedback| feedback.from_id}.uniq)
     users.each do |user|
       names = User.where(:id => feedbacks.collect{|feedback|feedback.to_id if feedback.from_id == user.id}).map(&:name).join(', ')
-      #UserMailer.alert_mail(user, names).deliver
+      UserMailer.alert_mail(user, names).deliver
     end
   end
+
 end

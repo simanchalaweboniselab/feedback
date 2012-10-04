@@ -25,7 +25,8 @@ class UsersController < ApplicationController
   end
 
   def give_feedback
-    @feedbacks = logged_in_user.from.where("created_at >=  '#{Time.now - (1*7*24*60*60)}' AND created_at =  updated_at").paginate(:page => params[:page], :per_page => 10).order('created_at desc')
+    feedbacks = logged_in_user.from
+    @feedbacks = feedbacks.empty? ? "" : feedbacks.select{|feedback|feedback.created_at.strftime("%a-%b-%Y") == Time.now.strftime("%a-%b-%Y")}
   end
 
   def received_feedback

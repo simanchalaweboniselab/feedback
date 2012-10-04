@@ -15,4 +15,8 @@ module ApplicationHelper
       name << "#{u.name} ,"
     end
   end
+  def get_seconds(time)
+    time = time.in_time_zone(TZInfo::Timezone.get('Asia/Kolkata'))
+    time = ((time.hour)*60*60)+((time.min)*60)+time.sec
+  end
 end

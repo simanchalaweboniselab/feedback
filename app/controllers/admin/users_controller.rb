@@ -22,11 +22,11 @@ class Admin::UsersController < ApplicationController
   end
 
   def create_assign_user
-    0..3.times do |i|
-      UserFeedback.create(:from_id => params[:from_user], :to_id => params["to_user_#{i}"])
+    if UserFeedback.assign_feedback(params)
+      render :json => {:success => true}
+    else
+      render :json => {:success => false}
     end
-
-    render :json => {:success => true}
   end
 
   def to_feedback

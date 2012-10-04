@@ -1,4 +1,4 @@
-<% if @feedbacks.length != 0 %>
+<% if @feedbacks.length != 0 and get_seconds(Time.now) >= 64800  and get_seconds(Time.now) <= 82800 %>
     <table class="table">
       <colgroup>
         <col class="span3">
@@ -7,7 +7,7 @@
       </colgroup>
       <thead>
       <caption>
-        <h2>Assigned Feedback</h2>
+        <h2>Feedback of day <%= Time.now.wday %></h2>
       </caption>
       <tr style = "background-color: #A2AFCC;">
         <th>Weboniser</th>
@@ -26,9 +26,8 @@
       <% end %>
     </table>
 <% else %>
-    <div align="center"><h2> Not assigned !!!!!!!!!!!! </h2></div>
+    <div align="center"><h2> Not assigned or Feedback time between 6:00 PM TO 11:00 PM </h2></div>
 <% end %>
-<%= page_navigation_links @feedbacks %>
 <script type="text/javascript">
     function nospaces(feedback){
         if(feedback.value.match(/\s/g)){
