@@ -37,6 +37,8 @@ class UsersController < ApplicationController
     @feedbacks = logged_in_user.from.where('feedback not in (?)', '').paginate(:page => params[:page], :per_page => 10).order('updated_at desc')
   end
 
+
+
   protected
   def find_user_by_perishable_token
     @user = User.find_by_perishable_token(params[:id])

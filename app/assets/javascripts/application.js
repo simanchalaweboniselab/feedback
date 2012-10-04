@@ -12,12 +12,25 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery-ui
 //= require twitter/bootstrap
 //= require_tree .
 
 
 
 $(document).ready(function(){
+    $("#assigned-search").live("click",function(event){
+        if($("#datepicker").val()){
+            $.ajax({
+                url: "/admin/users/assigned_search",
+                type: "GET",
+                data: {"date": $("#datepicker").val() }
+            });
+        }
+    });
+    $(function() {
+        $( "#datepicker" ).datepicker({ dateFormat: 'dd/mm/yy' });
+    });
     $("#remove-contributor-recipients").live("click",function(){
         $(this).parent().parent().parent().remove();
     });

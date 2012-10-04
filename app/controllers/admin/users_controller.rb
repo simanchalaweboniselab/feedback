@@ -40,6 +40,9 @@ class Admin::UsersController < ApplicationController
   def assigned_feedback
     @feedbacks = @user.from.where(:feedback => nil).paginate(:page => params[:page], :per_page => 10).order('created_at desc')
   end
+  def assigned_search
+    logger.info "======================#{params.inspect}"
+  end
 
   protected
 
