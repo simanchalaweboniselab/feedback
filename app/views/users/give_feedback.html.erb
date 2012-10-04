@@ -19,7 +19,7 @@
           <tr>
             <%= form_tag "/users/#{feedback.id}/update_feedback", :method => "PUT" do %>
                 <td><%= user_name(feedback.to_id) %></td>
-                <td><%= text_field_tag :feedback, params[:feedback], :size => 50, :maxlength => 50, :required => true %></td>
+                <td><%= text_field_tag :feedback, params[:feedback], :size => 50, :maxlength => 50, :required => true, :onkeyup => "nospaces(this)" %></td>
                 <td><%= submit_tag "submit", :class => "btn btn-success" %></td>
             <% end %>
           </tr>
@@ -29,3 +29,11 @@
     <div align="center"><h2> Not assigned !!!!!!!!!!!! </h2></div>
 <% end %>
 <%= page_navigation_links @feedbacks %>
+<script type="text/javascript">
+    function nospaces(feedback){
+        if(feedback.value.match(/\s/g)){
+            alert('Sorry, you are not allowed to enter any spaces');
+            feedback.value=feedback.value.replace(/\s/g,'');
+        }
+    }
+</script>
