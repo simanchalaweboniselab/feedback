@@ -5,24 +5,30 @@
     <col class="span3">
     <col class="span3">
   </colgroup>
-  <caption>
-    <h2>Received Feedback List of  <%= user.name %> </h2><%= begin_date.nil? ? "" : "( #{begin_date} to #{end_date})" %>
-  </caption>
-  <thead>
-  <tr style = "background-color: #A2AFCC;">
-    <th>Name</th>
-    <th>Assigned Date</th>
-    <th>Received Date</th>
-    <th>Feedback</th>
-  </tr>
-  </thead>
-  <% feedbacks.each do |feedback| %>
-      <tr>
-        <td><%= user_name(feedback.from_id) %></td>
-        <td><%= date(feedback.created_at) %></td>
-        <td><%= date(feedback.updated_at) if !feedback.feedback.to_s.empty? %></td>
-        <td><%= feedback.feedback if !feedback.feedback.to_s.empty? %></td>
+  <% if feedbacks.length == 0 %>
+      <caption>
+        <h2> Not received any feedback this week(<%=user.name %>)</h2><%= begin_date.nil? ? "" : "( #{begin_date} to #{end_date})" %>
+      </caption>
+  <% else %>
+      <caption>
+        <h2>Received Feedback List of  <%= user.name %> </h2><%= begin_date.nil? ? "" : "( #{begin_date} to #{end_date})" %>
+      </caption>
+      <thead>
+      <tr style = "background-color: #A2AFCC;">
+        <th>Name</th>
+        <th>Assigned Date</th>
+        <th>Received Date</th>
+        <th>Feedback</th>
       </tr>
+      </thead>
+      <% feedbacks.each do |feedback| %>
+          <tr>
+            <td><%= user_name(feedback.from_id) %></td>
+            <td><%= date(feedback.created_at) %></td>
+            <td><%= date(feedback.updated_at) if !feedback.feedback.to_s.empty? %></td>
+            <td><%= feedback.feedback if !feedback.feedback.to_s.empty? %></td>
+          </tr>
+      <% end %>
   <% end %>
 </table>
 <%= link_to "Back", admin_users_path, :class => "btn" %>

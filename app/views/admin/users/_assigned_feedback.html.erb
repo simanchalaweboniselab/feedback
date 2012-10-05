@@ -3,13 +3,14 @@
     <col class="span2">
     <col class="span3">
   </colgroup>
-  <caption>
-    <h2>Assigned Feedback List of <%= user.name %> </h2><%= begin_date.nil? ? "" : "( #{begin_date} to #{end_date})" %>
-    <% if feedbacks.length == 0 %>
-        <h2> Not assigned this week</h2>
-    <% end %>
-  </caption>
-  <% if feedbacks.length!=0 %>
+  <% if feedbacks.length == 0 %>
+      <caption>
+        <h2> Not assigned this week(<%=user.name %>)</h2> <%= begin_date.nil? ? "" : "( #{begin_date} to #{end_date})" %>
+      </caption>
+  <% else %>
+      <caption>
+        <h2>Assigned Feedback List of <%= user.name %> </h2><%= begin_date.nil? ? "" : "( #{begin_date} to #{end_date})" %>
+      </caption>
       <thead>
       <tr style = "background-color: #A2AFCC;">
         <th>Name</th>

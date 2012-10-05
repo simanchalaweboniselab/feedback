@@ -1,7 +1,8 @@
 class Admin::UsersController < ApplicationController
   before_filter :admin_should_be_login
   before_filter :find_user, :only => [:to_feedback, :from_feedback, :assigned_feedback, :assigned_feedback_search, :given_feedback_search, :received_feedback_search]
-  before_filter :find_date, :only => [:assigned_feedback_search, :given_feedback_search, :received_feedback_search]
+  before_filter :find_week, :only => [:assigned_feedback_search, :given_feedback_search, :received_feedback_search]
+  before_filter :find_current_week, :only => [:to_feedback, :from_feedback, :assigned_feedback]
 
   def index
     @users =  User.where(:role => "user").paginate(:page => params[:page], :per_page => 10)
@@ -31,15 +32,15 @@ class Admin::UsersController < ApplicationController
   end
 
   def to_feedback
-    @feedbacks =  @user.to.paginate(:page => params[:page], :per_page => 10).order('updated_at desc')
+    @feedbacks =  @user.to.where("created_at BETWEEN '#{@begin_date}' AND '#{@end_date}' AND feedback is NOT NULL").paginate(:page => params[:page], :per_page => 10).order('updated_at desc')
   end
 
   def from_feedback
-    @feedbacks =  @user.from.where("feedback is not NULL").paginate(:page => params[:page], :per_page => 10).order('created_at desc')
+    @feedbacks =  @user.from.where("created_at BETWEEN '#{@begin_date}' AND '#{@end_date}' AND feedback is NOT NULL").paginate(:page => params[:page], :per_page => 10).order('created_at desc')
   end
 
   def assigned_feedback
-    @feedbacks = @user.from.where(:feedback => nil).paginate(:page => params[:page], :per_page => 10).order('created_at desc')
+    @feedbacks = @user.from.where(:created_at => @begin_date..@end_date).paginate(:page => params[:page], :per_page => 10).order('created_at desc')
   end
 
   def assigned_feedback_search
@@ -57,7 +58,15 @@ class Admin::UsersController < ApplicationController
 
   protected
 
-  def find_date
+  def find_current_week
+    date = Date.today
+    weekday = date.wday
+    end_weekday = 6 - weekday
+    @begin_date = date.to_datetime.in_time_zone('UTC').beginning_of_day - weekday*24*60*60
+    @end_date = date.to_datetime.in_time_zone('UTC').end_of_day + end_weekday*24*60*60
+  end
+
+  def find_week
     weekday=params[:date].to_date.wday
     end_weekday = 6 - weekday
     @begin_date = params[:date].to_date.to_datetime.in_time_zone('UTC').beginning_of_day - weekday*24*60*60

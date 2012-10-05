@@ -3,5 +3,5 @@
   <%= link_to "search", nil, :class => "btn btn-info", :style => "margin-top:-9px; margin-left:-4px;", :remote => true, :id => "received-search" , :rel => @user.id %>
 </div>
 <div id="received_feedback">
-  <%= render :partial => "to_feedback", :locals => {:user => @user, :feedbacks => @feedbacks, :begin_date => nil, :end_date => nil} %>
+  <%= render :partial => "to_feedback", :locals => {:user => @user, :feedbacks => @feedbacks,  :begin_date => @begin_date.strftime("%d-%b-%Y"), :end_date => @end_date.strftime("%d-%b-%Y")} %>
 </div>

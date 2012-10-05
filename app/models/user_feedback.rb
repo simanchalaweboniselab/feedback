@@ -35,7 +35,7 @@ class UserFeedback < ActiveRecord::Base
   end
 
   def self.assigned_feedback(user, begin_date, end_date)
-    feedbacks = user.from.where(:created_at => begin_date..end_date, :feedback => nil)
+    user.from.where(:created_at => begin_date..end_date, :feedback => nil)
   end
   def self.given_feedback(user, begin_date, end_date)
     user.from.where("created_at BETWEEN '#{begin_date}' AND '#{end_date}' AND feedback is NOT NULL")
