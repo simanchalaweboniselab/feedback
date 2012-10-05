@@ -19,28 +19,63 @@
 
 
 $(document).ready(function(){
+
     $("#assigned-search").live("click",function(event){
         if($("#datepicker").val()){
             $.ajax({
-                url: "/admin/users/assigned_search",
+                url: "/admin/users/assigned_feedback_search",
                 type: "GET",
-                data: {"date": $("#datepicker").val() }
+                data: {"date": $("#datepicker").val(), "id": $(this).attr("rel") }
             });
         }
+        else
+        {
+            alert("enter date in search field");
+        }
     });
+
+    $("#given-search").live("click",function(event){
+        if($("#datepicker").val()){
+            $.ajax({
+                url: "/admin/users/given_feedback_search",
+                type: "GET",
+                data: {"date": $("#datepicker").val(), "id": $(this).attr("rel") }
+            });
+        }
+        else
+        {
+            alert("enter date in search field");
+        }
+    });
+
+    $("#received-search").live("click",function(event){
+        if($("#datepicker").val()){
+            $.ajax({
+                url: "/admin/users/received_feedback_search",
+                type: "GET",
+                data: {"date": $("#datepicker").val(), "id": $(this).attr("rel") }
+            });
+        }
+        else
+        {
+            alert("enter date in search field");
+        }
+    });
+
     $(function() {
         $( "#datepicker" ).datepicker({ dateFormat: 'dd/mm/yy' });
     });
+
     $("#remove-contributor-recipients").live("click",function(){
         $(this).parent().parent().parent().remove();
     });
+
     $("#remove-contributor-recipients1").live("click",function(){
         $(this).parent().parent().remove();
         if($("#feedback-box").length == 0){
             document.getElementById('save_all_user').style.visibility='hidden';
         }
     });
-
 
     $("#assign_user").live("click",function(){
         document.getElementById('contributor-recipients').style.visibility='visible';

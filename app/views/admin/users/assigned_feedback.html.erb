@@ -1,27 +1,7 @@
 <div class="pull-right">
   <%= datepicker_input "user_feedback","created_at", :id => "datepicker" %>
-  <%= link_to "search", nil, :class => "btn btn-info", :style => "margin-top:-9px; margin-left:-4px;", :remote => true, :id => "assigned-search" %>
+  <%= link_to "search", nil, :class => "btn btn-info", :style => "margin-top:-9px; margin-left:-4px;", :remote => true, :id => "assigned-search" , :rel => @user.id %>
 </div>
-<table class="table table-bordered">
-  <colgroup>
-    <col class="span2">
-    <col class="span3">
-  </colgroup>
-  <caption>
-    <h2>Assigned Feedback List of <%= @user.name %></h2>
-  </caption>
-  <thead>
-  <tr style = "background-color: #A2AFCC;">
-    <th>Name</th>
-    <th>Assigned Date</th>
-  </tr>
-  </thead>
-  <% @feedbacks.each do |feedback| %>
-      <tr>
-        <td><%= user_name(feedback.to_id) %></td>
-        <td><%= date(feedback.created_at) %></td>
-      </tr>
-  <% end %>
-</table>
-<%= link_to "Back", admin_users_path, :class => "btn" %>
-<%= page_navigation_links @feedbacks %>
+<div id="assigned_feedback">
+<%= render :partial => "assigned_feedback", :locals => {:feedbacks => @feedbacks, :user => @user, :begin_date => nil, :end_date => nil} %>
+</div>

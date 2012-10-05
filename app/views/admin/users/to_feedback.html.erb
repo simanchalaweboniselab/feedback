@@ -1,29 +1,7 @@
-<table class="table table-bordered">
-  <colgroup>
-    <col class="span2">
-    <col class="span3">
-    <col class="span3">
-    <col class="span3">
-  </colgroup>
-  <caption>
-    <h2>Received Feedback List</h2>
-  </caption>
-  <thead>
-  <tr style = "background-color: #A2AFCC;">
-    <th>Name</th>
-    <th>Assigned Date</th>
-    <th>Received Date</th>
-    <th>Feedback</th>
-  </tr>
-  </thead>
-  <% @feedbacks.each do |feedback| %>
-      <tr>
-        <td><%= user_name(feedback.from_id) %></td>
-        <td><%= date(feedback.created_at) %></td>
-        <td><%= date(feedback.updated_at) if !feedback.feedback.to_s.empty? %></td>
-        <td><%= feedback.feedback if !feedback.feedback.to_s.empty? %></td>
-      </tr>
-  <% end %>
-</table>
-<%= link_to "Back", admin_users_path, :class => "btn" %>
-<%= page_navigation_links @feedbacks %>
+<div class="pull-right">
+  <%= datepicker_input "user_feedback","created_at", :id => "datepicker" %>
+  <%= link_to "search", nil, :class => "btn btn-info", :style => "margin-top:-9px; margin-left:-4px;", :remote => true, :id => "received-search" , :rel => @user.id %>
+</div>
+<div id="received_feedback">
+  <%= render :partial => "to_feedback", :locals => {:user => @user, :feedbacks => @feedbacks, :begin_date => nil, :end_date => nil} %>
+</div>

@@ -34,6 +34,16 @@ class UserFeedback < ActiveRecord::Base
     return true
   end
 
+  def self.assigned_feedback(user, begin_date, end_date)
+    feedbacks = user.from.where(:created_at => begin_date..end_date, :feedback => nil)
+  end
+  def self.given_feedback(user, begin_date, end_date)
+    user.from.where("created_at BETWEEN '#{begin_date}' AND '#{end_date}' AND feedback is NOT NULL")
+  end
+  def self.received_feedback(user, begin_date, end_date)
+    user.to.where("created_at BETWEEN '#{begin_date}' AND '#{end_date}' AND feedback is NOT NULL")
+  end
+
   def self.alert_mail
     #feedbacks = self.where("created_at >=  '#{Time.now - (1*7*24*60*60)}' AND feedback is NULL")
     feedbacks = self.where(:created_at => Time.now.in_time_zone(TZInfo::Timezone.get('Asia/Kolkata')).beginning_of_day..Time.now.in_time_zone(TZInfo::Timezone.get('Asia/Kolkata')).end_of_day)
@@ -43,5 +53,6 @@ class UserFeedback < ActiveRecord::Base
       UserMailer.alert_mail(user, names).deliver
     end
   end
+
 
 end
