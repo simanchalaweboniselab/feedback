@@ -23,7 +23,7 @@
           <tr>
             <td><%= link_to user_name(feedback.from_id), from_feedback_admin_user_path(feedback.from_id) %></td>
             <td><%= link_to user_name(feedback.to_id), to_feedback_admin_user_path(feedback.to_id) %></td>
-            <td><%= date(feedback.created_at) %></td>
+            <td><%= feedback.created_at.strftime("%a, %d-%b-%Y, %I:%M:%p") %></td>
           </tr>
       <% end %>
   <% end %>

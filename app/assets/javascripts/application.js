@@ -31,7 +31,7 @@ $(document).ready(function(){
         }
         else
         {
-            alert("enter date in search field");
+            alert("please enter date in search field");
         }
     });
 
@@ -45,7 +45,7 @@ $(document).ready(function(){
         }
         else
         {
-            alert("enter date in search field");
+            alert("please enter date in search field");
         }
     });
 
@@ -62,12 +62,12 @@ $(document).ready(function(){
             alert("please enter date in search field");
         }
     });
-    $("#assigned-feedback-search").live("click",function(event){
+    $("#received-search").live("click",function(event){
         if($("#datepicker").val()){
             $.ajax({
-                url: "/admin/admins/assigned_feedback_search",
+                url: "/admin/users/_feedback_search",
                 type: "GET",
-                data: {"date": $("#datepicker").val() }
+                data: {"date": $("#datepicker").val(), "id": $(this).attr("rel") }
             });
         }
         else
@@ -77,7 +77,7 @@ $(document).ready(function(){
     });
 
     $(function() {
-        $( "#datepicker" ).datepicker({ autoclose :true,"format": "dd/mm/yyyy" });
+        $( "#datepicker" ).datepicker({"format": "dd-mm-yyyy", "autoclose": true});
     });
 
     $("#remove-contributor-recipients").live("click",function(){

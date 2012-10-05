@@ -53,6 +53,4 @@ class UserFeedback < ActiveRecord::Base
       UserMailer.alert_mail(user, names).deliver
     end
   end
-
-
 end

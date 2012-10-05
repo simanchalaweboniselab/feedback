@@ -8,6 +8,7 @@ module ApplicationHelper
     date.strftime("%a, %d-%b-%Y, %I:%M:%p")
   end
 
+
   def user_to(user)
     users = user.from
     name = ""

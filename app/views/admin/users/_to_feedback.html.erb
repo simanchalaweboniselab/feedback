@@ -24,7 +24,7 @@
       <% feedbacks.each do |feedback| %>
           <tr>
             <td><%= user_name(feedback.from_id) %></td>
-            <td><%= date(feedback.created_at) %></td>
+            <td><%= feedback.created_at.strftime("%a, %d-%b-%Y, %I:%M:%p") %></td>
             <td><%= date(feedback.updated_at) if !feedback.feedback.to_s.empty? %></td>
             <td><%= feedback.feedback if !feedback.feedback.to_s.empty? %></td>
           </tr>
