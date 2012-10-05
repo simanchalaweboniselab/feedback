@@ -30,11 +30,11 @@ class UsersController < ApplicationController
   end
 
   def received_feedback
-    @feedbacks = logged_in_user.to.where('feedback not in (?)', '').order('updated_at DESC').paginate(:page => params[:page], :per_page => 10).order('updated_at desc')
+    @feedbacks = logged_in_user.to.where("feedback is NOT NULL").order('updated_at DESC').paginate(:page => params[:page], :per_page => 10).order('updated_at desc')
   end
 
   def given_feedback
-    @feedbacks = logged_in_user.from.where('feedback not in (?)', '').paginate(:page => params[:page], :per_page => 10).order('updated_at desc')
+    @feedbacks = logged_in_user.from.where("feedback is NOT NULL").paginate(:page => params[:page], :per_page => 10).order('updated_at desc')
   end
 
 

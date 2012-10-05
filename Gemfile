@@ -10,7 +10,8 @@ gem 'authlogic'
 gem 'twitter-bootstrap-rails','2.0.4'
 gem 'whenever', :require => false
 gem 'will_paginate'
-gem 'jquery_datepicker'
+#gem 'jquery_datepicker'
+gem 'bootstrap-datepicker-rails'
 
 # Gems used only for assets and not required
 # in production environments by default.

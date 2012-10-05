@@ -1,5 +1,5 @@
 <div class="pull-right">
-  <%= datepicker_input "user_feedback","created_at", :id => "datepicker" %>
+  <%= text_field "user_feedback","created_at", :id => "datepicker" %>
   <%= link_to "search", nil, :class => "btn btn-info", :style => "margin-top:-9px; margin-left:-4px;", :remote => true, :id => "received-search" , :rel => @user.id %>
 </div>
 <div id="received_feedback">

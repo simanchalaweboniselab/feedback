@@ -1,0 +1,7 @@
+<div class="pull-right">
+  <%= text_field "user_feedback","created_at", :id => "datepicker" %>
+  <%= link_to "search", nil, :class => "btn btn-info", :style => "margin-top:-9px; margin-left:-4px;", :remote => true, :id => "assigned-feedback-search" %>
+</div>
+<div id="assigned-feedback-list">
+  <%= render :partial => "assigned_feedback_list", :locals => {:feedbacks => @feedbacks, :begin_date => @begin_date.strftime("%d-%b-%Y"), :end_date => @end_date.strftime("%d-%b-%Y")} %>
+</div>

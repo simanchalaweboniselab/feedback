@@ -1,0 +1,31 @@
+<table class="table table-bordered">
+  <colgroup>
+    <col class="span3">
+    <col class="span3">
+    <col class="span3">
+  </colgroup>
+  <% if feedbacks.length == 0 %>
+      <caption>
+        <h2> Not assigned this week</h2> <%= begin_date.nil? ? "" : "( #{begin_date} to #{end_date})" %>
+      </caption>
+  <% else %>
+      <caption>
+        <h2>Assigned Feedback List</h2><%= begin_date.nil? ? "" : "( #{begin_date} to #{end_date})" %>
+      </caption>
+      <thead>
+      <tr style = "background-color: #A2AFCC;">
+        <th>Contributor</th>
+        <th>Recipient</th>
+        <th>Assigned Date & Time</th>
+      </tr>
+      </thead>
+      <% feedbacks.each do |feedback| %>
+          <tr>
+            <td><%= link_to user_name(feedback.from_id), from_feedback_admin_user_path(feedback.from_id) %></td>
+            <td><%= link_to user_name(feedback.to_id), to_feedback_admin_user_path(feedback.to_id) %></td>
+            <td><%= date(feedback.created_at) %></td>
+          </tr>
+      <% end %>
+  <% end %>
+</table>
+<%= page_navigation_links feedbacks %>

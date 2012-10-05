@@ -4,22 +4,28 @@
     <col class="span3">
     <col class="span3">
   </colgroup>
-  <thead>
-  <caption>
-    <h2><%= logged_in_user.name%> Given Feedback</h2>
-  </caption>
-  <tr style = "background-color: #A2AFCC;">
-    <th>Weboniser</th>
-    <th>Date</th>
-    <th>Feedback</th>
-  </tr>
-  </thead>
-  <% @feedbacks.each do |feedback| %>
-      <tr>
+  <% if @feedbacks.length == 0 %>
+      <caption>
+        <h2>Feedback not Given!</h2>
+      </caption>
+  <% else %>
+      <caption>
+        <h2> Given Feedback List</h2>
+      </caption>
+      <thead>
+      <tr style = "background-color: #A2AFCC;">
+        <th>Weboniser</th>
+        <th>Date</th>
+        <th>Feedback</th>
+      </tr>
+      </thead>
+      <% @feedbacks.each do |feedback| %>
+          <tr>
             <td><%= user_name(feedback.to_id) %></td>
             <td><%= date(feedback.updated_at) %></td>
             <td><%= feedback.feedback %></td>
-      </tr>
+          </tr>
+      <% end %>
   <% end %>
 </table>
 <%= page_navigation_links @feedbacks %>

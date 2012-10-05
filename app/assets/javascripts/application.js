@@ -14,6 +14,7 @@
 //= require jquery_ujs
 //= require jquery-ui
 //= require twitter/bootstrap
+//= require bootstrap-datepicker
 //= require_tree .
 
 
@@ -58,12 +59,25 @@ $(document).ready(function(){
         }
         else
         {
-            alert("enter date in search field");
+            alert("please enter date in search field");
+        }
+    });
+    $("#assigned-feedback-search").live("click",function(event){
+        if($("#datepicker").val()){
+            $.ajax({
+                url: "/admin/admins/assigned_feedback_search",
+                type: "GET",
+                data: {"date": $("#datepicker").val() }
+            });
+        }
+        else
+        {
+            alert("please enter date in search field");
         }
     });
 
     $(function() {
-        $( "#datepicker" ).datepicker({ dateFormat: 'dd/mm/yy' });
+        $( "#datepicker" ).datepicker({ autoclose :true,"format": "dd/mm/yyyy" });
     });
 
     $("#remove-contributor-recipients").live("click",function(){
