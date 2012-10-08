@@ -50,7 +50,7 @@ class UserFeedback < ActiveRecord::Base
     users = User.where(:id => feedbacks.collect{|feedback| feedback.from_id}.uniq)
     users.each do |user|
       names = User.where(:id => feedbacks.collect{|feedback|feedback.to_id if feedback.from_id == user.id}).map(&:name).join(', ')
-      #UserMailer.alert_mail(user, names).deliver
+      UserMailer.alert_mail(user, names).deliver
     end
   end
 end
