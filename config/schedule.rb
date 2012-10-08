@@ -3,5 +3,5 @@
 #  runner "UserFeedback.alert_mail", :environment => "development"
 #end
 every 5.minutes do
-  runner "UserFeedback.alert_mail", :environment => "production"
+  runner "UserFeedback.alert_mail", :environment => "development"
 end
