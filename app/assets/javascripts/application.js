@@ -20,6 +20,104 @@
 
 
 $(document).ready(function(){
+    $("#previous-received").live("click",function(event){
+        $.ajax({
+            url: "/admin/users/received_feedback_search",
+            type: "GET",
+            data: {"date": $(this).attr("date"), "id": $(this).attr("user_id") }
+        });
+    });
+
+    $("#next-received").live("click",function(event){
+        $.ajax({
+            url: "/admin/users/received_feedback_search",
+            type: "GET",
+            data: {"date": $(this).attr("date"), "id": $(this).attr("user_id")}
+        });
+    });
+
+    $("#previous-given").live("click",function(event){
+        $.ajax({
+            url: "/admin/users/given_feedback_search",
+            type: "GET",
+            data: {"date": $(this).attr("date"), "id": $(this).attr("user_id") }
+        });
+    });
+
+    $("#next-given").live("click",function(event){
+        $.ajax({
+            url: "/admin/users/given_feedback_search",
+            type: "GET",
+            data: {"date": $(this).attr("date"), "id": $(this).attr("user_id")}
+        });
+    });
+
+    $("#previous-assigned").live("click",function(event){
+        $.ajax({
+            url: "/admin/users/assigned_feedback_search",
+            type: "GET",
+            data: {"date": $(this).attr("date"), "id": $(this).attr("user_id") }
+        });
+    });
+
+    $("#next-assigned").live("click",function(event){
+        $.ajax({
+            url: "/admin/users/assigned_feedback_search",
+            type: "GET",
+            data: {"date": $(this).attr("date"), "id": $(this).attr("user_id")}
+        });
+    });
+
+
+    $("#previous-assigned-feedback").live("click",function(event){
+        $.ajax({
+            url: "/admin/admins/assigned_feedback_search",
+            type: "GET",
+            data: {"date": $(this).attr("date")}
+        });
+    });
+
+    $("#next-assigned-feedback").live("click",function(event){
+        $.ajax({
+            url: "/admin/admins/assigned_feedback_search",
+            type: "GET",
+            data: {"date": $(this).attr("date")}
+        });
+    });
+
+
+    $("#previous-user-received-search").live("click",function(event){
+        $.ajax({
+            url: "/users/received_feedback_search",
+            type: "GET",
+            data: {"date": $(this).attr("date")}
+        });
+    });
+
+    $("#next-user-received-search").live("click",function(event){
+        $.ajax({
+            url: "/users/received_feedback_search",
+            type: "GET",
+            data: {"date": $(this).attr("date")}
+        });
+    });
+
+
+    $("#previous-user-given-search").live("click",function(event){
+        $.ajax({
+            url: "/users/given_feedback_search",
+            type: "GET",
+            data: {"date": $(this).attr("date")}
+        });
+    });
+
+    $("#next-user-given-search").live("click",function(event){
+        $.ajax({
+            url: "/users/given_feedback_search",
+            type: "GET",
+            data: {"date": $(this).attr("date")}
+        });
+    });
 
     $("#user-received-search").live("click",function(event){
         if($("#datepicker").val()){
@@ -90,19 +188,19 @@ $(document).ready(function(){
             alert("please enter date in search field");
         }
     });
-    $("#received-search").live("click",function(event){
-        if($("#datepicker").val()){
-            $.ajax({
-                url: "/admin/users/_feedback_search",
-                type: "GET",
-                data: {"date": $("#datepicker").val(), "id": $(this).attr("rel") }
-            });
-        }
-        else
-        {
-            alert("please enter date in search field");
-        }
-    });
+//    $("#received-search").live("click",function(event){
+//        if($("#datepicker").val()){
+//            $.ajax({
+//                url: "/admin/users/_feedback_search",
+//                type: "GET",
+//                data: {"date": $("#datepicker").val(), "id": $(this).attr("rel") }
+//            });
+//        }
+//        else
+//        {
+//            alert("please enter date in search field");
+//        }
+//    });
     $("#assigned-feedback-search").live("click",function(event){
         if($("#datepicker").val()){
             $.ajax({
