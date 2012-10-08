@@ -1,31 +1,7 @@
-<table class="table table-bordered">
-  <colgroup>
-    <col class="span3">
-    <col class="span3">
-    <col class="span3">
-  </colgroup>
-  <% if @feedbacks.length == 0 %>
-      <caption>
-        <h2>Feedback not Given!</h2>
-      </caption>
-  <% else %>
-      <caption>
-        <h2> Given Feedback List</h2>
-      </caption>
-      <thead>
-      <tr style = "background-color: #A2AFCC;">
-        <th>Weboniser</th>
-        <th>Date</th>
-        <th>Feedback</th>
-      </tr>
-      </thead>
-      <% @feedbacks.each do |feedback| %>
-          <tr>
-            <td><%= user_name(feedback.to_id) %></td>
-            <td><%= date(feedback.updated_at) %></td>
-            <td><%= feedback.feedback %></td>
-          </tr>
-      <% end %>
-  <% end %>
-</table>
-<%= page_navigation_links @feedbacks %>
+<div class="pull-right">
+  <input type="text" data-behaviour='datepicker' id="datepicker" >
+  <%= link_to "search", nil, :class => "btn btn-info", :style => "margin-top:-9px; margin-left:-4px;", :remote => true, :id => "user-given-search" %>
+</div>
+<div id="user_given_feedback">
+  <%= render :partial => "given_feedback", :locals => {:feedbacks => @feedbacks, :end_date => @end_date.strftime("%d-%b-%Y"), :begin_date => @begin_date.strftime("%d-%b-%Y")} %>
+</div>

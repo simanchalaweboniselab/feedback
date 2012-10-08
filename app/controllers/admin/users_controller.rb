@@ -12,8 +12,11 @@ class Admin::UsersController < ApplicationController
   end
 
   def get_from_user_list
-    @feedback = UserFeedback.where("created_at >=  '#{Time.now - (1*7*24*60*60)}'")
-    feedback = @feedback.collect{|f| f.from_id}.zip(params[:from_user] ? params[:from_user] : []).flatten.compact.collect{|s| s.to_i}
+    begin_date =  Date.today.to_datetime.in_time_zone('UTC').beginning_of_day - (Date.today.wday)*24*60*60
+    end_date =  Date.today.to_datetime.in_time_zone('UTC').end_of_day + (6-Date.today.wday)*24*60*60
+    #@feedback = UserFeedback.where("created_at >=  '#{Time.now - (1*7*24*60*60)}'")
+    @feedback = UserFeedback.where(:created_at => begin_date..end_date)
+    feedback = @feedback.collect{|f| f.from_id}.zip(params[:from_user] ? params[:from_user] : []).flatten.compact.collect{|s| s.to_i}.uniq!
     @users = User.where("id not in(?) and role = 'user'", feedback.present? ? feedback : '' )
     render :json => @users
   end

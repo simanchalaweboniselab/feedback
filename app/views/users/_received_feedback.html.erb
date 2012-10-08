@@ -1,0 +1,32 @@
+<table class="table table-bordered">
+  <colgroup>
+    <col class="span3">
+    <col class="span3">
+    <col class="span3">
+  </colgroup>
+  <% if feedbacks.length == 0 %>
+      <caption>
+        <h2> Feedback not Received!</h2><%= begin_date.nil? ? "" : "( #{begin_date} to #{end_date})" %>
+      </caption>
+      <thead></thead>
+  <% else %>
+      <caption>
+        <h2> Received Feedback List</h2><%= begin_date.nil? ? "" : "( #{begin_date} to #{end_date})" %>
+      </caption>
+      <thead>
+      <tr style = "background-color: #A2AFCC;">
+        <th>Weboniser</th>
+        <th>Received Date & Time</th>
+        <th>Feedback</th>
+      </tr>
+      </thead>
+      <% feedbacks.each do |feedback| %>
+          <tr>
+            <td><%= user_name(feedback.from_id) %></td>
+            <td><%= date(feedback.updated_at) %></td>
+            <td><%= feedback.feedback %></td>
+          </tr>
+      <% end %>
+  <% end %>
+</table>
+<%= page_navigation_links feedbacks %>

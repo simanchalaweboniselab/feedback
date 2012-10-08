@@ -21,6 +21,34 @@
 
 $(document).ready(function(){
 
+    $("#user-received-search").live("click",function(event){
+        if($("#datepicker").val()){
+            $.ajax({
+                url: "/users/received_feedback_search",
+                type: "GET",
+                data: {"date": $("#datepicker").val()}
+            });
+        }
+        else
+        {
+            alert("please enter date in search field");
+        }
+    });
+
+    $("#user-given-search").live("click",function(event){
+        if($("#datepicker").val()){
+            $.ajax({
+                url: "/users/given_feedback_search",
+                type: "GET",
+                data: {"date": $("#datepicker").val()}
+            });
+        }
+        else
+        {
+            alert("please enter date in search field");
+        }
+    });
+
     $("#assigned-search").live("click",function(event){
         if($("#datepicker").val()){
             $.ajax({
