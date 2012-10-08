@@ -12,8 +12,3 @@
  *= require bootstrap-datepicker
  *= require_tree .
  */
-#add_pg {
-    min-height: 200px;
-    border: 1px solid #CCC;
-    padding: 5px;
-}
