@@ -2,6 +2,6 @@
 #every :day, :at => '6:00 pm' do
 #  runner "UserFeedback.alert_mail", :environment => "development"
 #end
-every 5.minutes do
+every 2.minutes do
   runner "UserFeedback.alert_mail", :environment => "development"
 end
