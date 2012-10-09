@@ -253,7 +253,10 @@ $(document).ready(function(){
                 source: function( request, response ) {
                     $.ajax({
                         url: "/admin/users/get_from_user_list",
-                        data: {"from_user": ids1},
+                        data: {
+                            "from_user": ids1,
+                            name_startsWith: request.term
+                        },
                         dataType: "json",
                         success: function(data){
                             response( $.map( data, function( item ) {
@@ -304,7 +307,10 @@ $(document).ready(function(){
                     $.ajax({
                         url: "/admin/users/get_to_user_list",
                         dataType: "json",
-                        data: {"from_user": ids},
+                        data: {
+                            "from_user": ids,
+                            name_startsWith: request.term
+                        },
                         success: function(data){
                             response( $.map( data, function( item ) {
                                 return {

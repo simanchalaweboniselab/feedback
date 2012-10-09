@@ -16,12 +16,12 @@ class Admin::UsersController < ApplicationController
     @end_date =  Date.today.to_datetime.in_time_zone('UTC').end_of_day + (6-Date.today.wday)*24*60*60
     @feedback = UserFeedback.where(:created_at => @begin_date..@end_date)
     feedback = @feedback.collect{|f| f.from_id}.zip(params[:from_user] ? params[:from_user] : []).flatten.compact.collect{|s| s.to_i}.uniq
-    @users = User.where("id not in(?) and role = 'user'", feedback.present? ? feedback : '' )
+    @users = User.where("id not in(?) and role = 'user' and name LIKE '%#{params[:name_startsWith]}%'", feedback.present? ? feedback : '' )
     render :json => @users
   end
 
   def get_to_user_list
-    @users = User.where("id not in(?) and role = 'user'", params[:from_user])
+    @users = User.where("id not in(?) and role = 'user' and name LIKE '%#{params[:name_startsWith]}%'", params[:from_user])
     render :json => @users
   end
 

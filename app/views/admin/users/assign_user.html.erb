@@ -1,4 +1,3 @@
-<% if get_seconds(Time.now) < 64800 and Time.now.wday >= 1 and Time.now.wday<= 5 %>
     <div id="message" style="float: left; margin-left: 70px;">
       <h3>To assign feedback contributor and feedback recipients, please click on "Assign User" button.</h3>
     </div>
@@ -13,6 +12,3 @@
     <div class="content" id="assign_user_content">
     </div>
     <div align="center" style="visibility: hidden;" id = "message1">(Please click "Assign User" to add new set of fields.)</div>
-<% else %>
-    <div align="center"><h2>Assign to User before 6PM(Monday-Friday)</h2></div>
-<% end %>
