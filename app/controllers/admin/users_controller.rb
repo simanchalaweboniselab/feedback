@@ -38,23 +38,23 @@ class Admin::UsersController < ApplicationController
   end
 
   def from_feedback
-    @feedbacks =  @user.from.where("created_at BETWEEN '#{@begin_date}' AND '#{@end_date}' AND feedback is NOT NULL").paginate(:page => params[:page], :per_page => 10).order('created_at desc')
+    @feedbacks =  @user.from.where("created_at BETWEEN '#{@begin_date}' AND '#{@end_date}' AND feedback is NOT NULL").paginate(:page => params[:page], :per_page => 10).order('created_at')
   end
 
   def assigned_feedback
-    @feedbacks = @user.from.where(:created_at => @begin_date..@end_date).paginate(:page => params[:page], :per_page => 10).order('created_at desc')
+    @feedbacks = @user.from.where(:created_at => @begin_date..@end_date).paginate(:page => params[:page], :per_page => 10).order('created_at')
   end
 
   def assigned_feedback_search
-    @feedbacks = UserFeedback.assigned_feedback(@user, @begin_date, @end_date).paginate(:page => params[:page], :per_page => 10).order('created_at desc')
+    @feedbacks = UserFeedback.assigned_feedback(@user, @begin_date, @end_date).paginate(:page => params[:page], :per_page => 10).order('created_at')
   end
 
   def given_feedback_search
-    @feedbacks = UserFeedback.given_feedback(@user, @begin_date, @end_date).paginate(:page => params[:page], :per_page => 10).order('created_at desc')
+    @feedbacks = UserFeedback.given_feedback(@user, @begin_date, @end_date).paginate(:page => params[:page], :per_page => 10).order('created_at')
   end
 
   def received_feedback_search
-    @feedbacks = UserFeedback.received_feedback(@user, @begin_date, @end_date).paginate(:page => params[:page], :per_page => 10).order('created_at desc')
+    @feedbacks = UserFeedback.received_feedback(@user, @begin_date, @end_date).paginate(:page => params[:page], :per_page => 10).order('created_at')
   end
 
 
