@@ -6,8 +6,6 @@ Feedback::Application.routes.draw do
     put :update_feedback, :on => :member
     get :give_feedback, :on => :collection
     get :received_feedback, :on => :collection
-    get :given_feedback, :on => :collection
-    get :given_feedback_search, :on => :collection
     get :received_feedback_search, :on => :collection
   end
 

@@ -1,6 +1,13 @@
 module ApplicationHelper
-  def user_name(id)
-    User.find(id).name
+  def user_name(users,id)
+    #User.find(id).name
+    user = users.to_a.select{|user| user.id == id}
+    user[0][:name]
+  end
+
+  def username(id, users)
+    user = users.to_a.select{|user| user.id == id}
+    user[0][:name]
   end
 
   def date(date)

@@ -1,8 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
-  helper_method :current_user
-  helper_method :current_admin
-  helper_method :logged_in_user
+  helper_method :current_user,:current_admin,:logged_in_user, :find_current_week, :find_week, :all_user
 
   def admin_should_be_login
     redirect_to "/login" unless current_admin
@@ -31,5 +29,24 @@ class ApplicationController < ActionController::Base
   end
   def logged_in_user
     user
+  end
+
+  def find_current_week
+    date = Date.today
+    weekday = date.wday
+    end_weekday = 6 - weekday
+    @begin_date = date.to_datetime.in_time_zone('UTC').beginning_of_day - weekday*24*60*60
+    @end_date = date.to_datetime.in_time_zone('UTC').end_of_day + end_weekday*24*60*60
+  end
+
+  def find_week
+    weekday=params[:date].to_date.wday
+    end_weekday = 6 - weekday
+    @begin_date = params[:date].to_date.to_datetime.in_time_zone('UTC').beginning_of_day - weekday*24*60*60
+    @end_date = params[:date].to_date.to_datetime.in_time_zone('UTC').end_of_day + end_weekday*24*60*60
+  end
+
+  def all_user
+    @users = User.where(:role => "user")
   end
 end

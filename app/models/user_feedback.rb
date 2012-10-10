@@ -34,12 +34,12 @@ class UserFeedback < ActiveRecord::Base
     return true
   end
 
-  def self.assigned_feedback(user, begin_date, end_date)
-    user.from.where(:created_at => begin_date..end_date)
-  end
-  def self.given_feedback(user, begin_date, end_date)
-    user.from.where("created_at BETWEEN '#{begin_date}' AND '#{end_date}' AND feedback is NOT NULL")
-  end
+  #def self.assigned_feedback(user, begin_date, end_date)
+  #  user.from.where(:created_at => begin_date..end_date)
+  #end
+  #def self.given_feedback(user, begin_date, end_date)
+  #  user.from.where("created_at BETWEEN '#{begin_date}' AND '#{end_date}' AND feedback is NOT NULL")
+  #end
   def self.received_feedback(user, begin_date, end_date)
     user.to.where("created_at BETWEEN '#{begin_date}' AND '#{end_date}' AND feedback is NOT NULL")
   end

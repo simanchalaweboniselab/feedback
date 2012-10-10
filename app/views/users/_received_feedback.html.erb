@@ -28,7 +28,7 @@
       </thead>
       <% feedbacks.each do |feedback| %>
           <tr>
-            <td><%= user_name(feedback.from_id) %></td>
+            <td><%= user_name(users, feedback.from_id) %></td>
             <td><%= date(feedback.updated_at) %></td>
             <td><%= feedback.feedback %></td>
           </tr>

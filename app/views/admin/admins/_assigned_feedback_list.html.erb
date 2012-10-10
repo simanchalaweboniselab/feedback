@@ -2,7 +2,6 @@
   <colgroup>
     <col class="span3">
     <col class="span3">
-    <col class="span3">
   </colgroup>
   <% if feedbacks.length == 0 %>
       <caption>
@@ -22,14 +21,18 @@
       <tr style = "background-color: #A2AFCC;">
         <th>Contributor</th>
         <th>Recipient</th>
-        <th>Assigned Date & Time</th>
       </tr>
       </thead>
       <% feedbacks.each do |feedback| %>
           <tr>
-            <td><%= link_to user_name(feedback.from_id), from_feedback_admin_user_path(feedback.from_id) %></td>
-            <td><%= link_to user_name(feedback.to_id), to_feedback_admin_user_path(feedback.to_id) %></td>
-            <td><%= feedback.created_at.strftime("%a, %d-%b-%Y, %I:%M:%p") %></td>
+            <td><%= link_to user_name(users,feedback.from_id), from_feedback_admin_user_path(feedback.from_id) %></td>
+            <td>
+              <% recipients1 = recipients.select{|r| r.from_id == feedback.from_id} %>
+              <% recipients1 = recipients1.uniq{|r| r.to_id} %>
+              <% recipients1.each do |recipient| %>
+                <%= link_to user_name(users, recipient.to_id), to_feedback_admin_user_path(recipient.to_id) %>&nbsp;&nbsp;&nbsp;
+              <% end %>
+            </td>
           </tr>
       <% end %>
   <% end %>

@@ -1,1 +1,1 @@
-$("#assigned-feedback-list").html("<%= escape_javascript(render :partial => "assigned_feedback_list", :locals => {:feedbacks => @feedbacks, :begin_date => @begin_date.strftime("%d-%b-%Y"), :end_date => @end_date.strftime("%d-%b-%Y")}) %>");
+$("#assigned-feedback-list").html("<%= escape_javascript(render :partial => "assigned_feedback_list", :locals => {:users => @users, :recipients => @recipients, :feedbacks => @feedbacks, :begin_date => @begin_date.strftime("%d-%b-%Y"), :end_date => @end_date.strftime("%d-%b-%Y")}) %>");

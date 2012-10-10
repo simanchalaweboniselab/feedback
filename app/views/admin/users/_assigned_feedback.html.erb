@@ -25,7 +25,7 @@
       </thead>
       <% feedbacks.each do |feedback| %>
           <tr>
-            <td><%= user_name(feedback.to_id) %></td>
+            <td><%= user_name(users,feedback.to_id) %></td>
             <td><%= feedback.created_at.strftime("%a, %d-%b-%Y, %I:%M:%p") %></td>
           </tr>
       <% end %>
