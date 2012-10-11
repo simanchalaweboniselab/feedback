@@ -1,1 +1,11 @@
-$("#given_feedback").html("<%= escape_javascript(render :partial => "from_feedback", :locals => {:users => @users, :feedbacks => @feedbacks, :user => @user, :begin_date => @begin_date.strftime("%d-%b-%Y"), :end_date => @end_date.strftime("%d-%b-%Y")}) %>");
+<% if @begin_date.beginning_of_month.wday != 0  %>
+<% date = @begin_date.beginning_of_month.next_week(:monday)-3.days %>
+<% else %>
+<% date = (@begin_date.beginning_of_month + 1.days).next_week(:monday)-3.days %>
+<% end %>
+<% if date.next_month.beginning_of_month.wday != 0  %>
+<% next_date = date.next_month.beginning_of_month - (date.next_month.beginning_of_month.wday - 1)*24*60*60 %>
+<% else %>
+<% next_date = date.next_month.beginning_of_month + 1.days %>
+<% end %>
+$("#given_feedback").html("<%= escape_javascript(render :partial => "from_feedback", :locals => {:users => @users, :feedbacks => @feedbacks, :user => @user,  :begin_date => @begin_date.beginning_of_month -  (@begin_date.beginning_of_month.wday - 1)*24*60*60, :end_date => date,:next_month_begin_date => next_date , :next_month_end_date => (next_date.next_week(:monday))-3.days}) %>");

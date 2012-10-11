@@ -24,7 +24,7 @@
           <% @feedbacks.each do |feedback| %>
               <tr>
                 <%= form_tag "/users/#{feedback.id}/update_feedback", :method => "PUT" do %>
-                    <td><%= user_name(feedback.to_id) %></td>
+                    <td><%= user_name(@users, feedback.to_id) %></td>
                     <td><%= text_field_tag :feedback, params[:feedback], :size => 50, :maxlength => 50, :required => true, :onkeyup => "nospaces(this)" %></td>
                     <td><%= submit_tag "submit", :class => "btn btn-success" %></td>
                 <% end %>

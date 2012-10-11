@@ -35,15 +35,15 @@ class ApplicationController < ActionController::Base
     date = Date.today
     weekday = date.wday
     end_weekday = 6 - weekday
-    @begin_date = date.to_datetime.in_time_zone('UTC').beginning_of_day - weekday*24*60*60
-    @end_date = date.to_datetime.in_time_zone('UTC').end_of_day + end_weekday*24*60*60
+    @begin_date = date.to_datetime.in_time_zone('UTC').beginning_of_day - (weekday-1)*24*60*60
+    @end_date = date.to_datetime.in_time_zone('UTC').end_of_day + (end_weekday-1)*24*60*60
   end
 
   def find_week
     weekday=params[:date].to_date.wday
     end_weekday = 6 - weekday
-    @begin_date = params[:date].to_date.to_datetime.in_time_zone('UTC').beginning_of_day - weekday*24*60*60
-    @end_date = params[:date].to_date.to_datetime.in_time_zone('UTC').end_of_day + end_weekday*24*60*60
+    @begin_date = params[:date].to_date.to_datetime.in_time_zone('UTC').beginning_of_day - (weekday-1)*24*60*60
+    @end_date = params[:date].to_date.to_datetime.in_time_zone('UTC').end_of_day + (end_weekday-1)*24*60*60
   end
 
   def all_user

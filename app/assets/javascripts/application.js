@@ -37,6 +37,7 @@ $(document).ready(function(){
     });
 
     $("#previous-given").live("click",function(event){
+        alert($(this).attr("date"));
         $.ajax({
             url: "/admin/users/given_feedback_search",
             type: "GET",
@@ -45,6 +46,7 @@ $(document).ready(function(){
     });
 
     $("#next-given").live("click",function(event){
+        alert($(this).attr("date"));
         $.ajax({
             url: "/admin/users/given_feedback_search",
             type: "GET",

@@ -13,7 +13,10 @@
     <th>ID</th>
     <th>Name</th>
     <th>Email</th>
-    <th>Feedback</th>
+    <th><div align="center">
+      <%= link_to "Assign User", assign_user_admin_users_path, :class => "btn btn-info" %>
+    </div>
+    </th>
   </tr>
   </thead>
   <% @users.each do |user| %>
@@ -22,9 +25,11 @@
         <td><%= user.name %></td>
         <td><%= user.email %></td>
         <td>
+          <div align="center">
           <%= link_to "Received",to_feedback_admin_user_path(user), :class => "btn btn-success" %>
           <%= link_to "Given",from_feedback_admin_user_path(user), :class => "btn btn-success" %>
           <%= link_to "Assigned", assigned_feedback_admin_user_path(user), :class => "btn btn-success" %>
+          </div>
         </td>
       </tr>
   <% end %>

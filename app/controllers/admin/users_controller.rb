@@ -52,6 +52,8 @@ class Admin::UsersController < ApplicationController
   end
 
   def given_feedback_search
+
+    logger.info "================controller================#{@begin_date}"
     respond_to do |format|
       format.js
       format.html
