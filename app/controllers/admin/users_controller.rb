@@ -75,7 +75,7 @@ class Admin::UsersController < ApplicationController
   end
 
   def given_user_feedback
-    @feedbacks =  @user.from.where("created_at BETWEEN '#{@begin_date}' AND '#{@end_date}' AND feedback is NOT NULL").paginate(:page => params[:page], :per_page => 10).order('created_at')
+    @feedbacks =  @user.from.where("created_at BETWEEN '#{@begin_date}' AND '#{@end_date}' AND feedback is NOT NULL").paginate(:page => params[:page], :per_page => 10).order('created_at'}' ")
   end
 
   def received_user_feedback
