@@ -4,10 +4,5 @@
 </div>
 <div class="clearfix"></div>
 <div id="given_feedback">
-  <% if @begin_date.beginning_of_month.wday != 0  %>
-      <% date = @begin_date.beginning_of_month.next_week(:monday)-3.days %>
-  <% else %>
-      <% date = (@begin_date.beginning_of_month + 1.days).next_week(:monday)-3.days %>
-  <% end %>
-  <%= render :partial => "from_feedback", :locals => {:users => @users, :feedbacks => @feedbacks, :user => @user,  :begin_date => @begin_date.beginning_of_month - (@begin_date.beginning_of_month.wday - 1)*24*60*60, :end_date => date,:next_month_begin_date => date.next_month.beginning_of_month - (date.next_month.beginning_of_month.wday - 1)*24*60*60 , :next_month_end_date => date.next_month.beginning_of_month.next_week(:monday)-3.days  } %>
+  <%= render :partial => "from_feedback", :locals => {:users => @users, :feedbacks => @feedbacks, :user => @user,  :begin_date => @begin_date.end_of_week.prev_month.beginning_of_month.beginning_of_week, :end_date =>  @begin_date.end_of_week.prev_month.beginning_of_month.end_of_week,:next_month_begin_date => @begin_date.end_of_week , :next_month_end_date => @begin_date.end_of_week} %>
 </div>

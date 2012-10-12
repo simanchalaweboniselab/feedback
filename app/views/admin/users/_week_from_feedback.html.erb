@@ -1,6 +1,6 @@
-<table class="table table-bordered">
+<table class="table" style="background-color: #64D6C6">
   <colgroup>
-    <col class="span2">
+    <col class="span3">
     <col class="span3">
     <col class="span3">
     <col class="span3">
@@ -8,10 +8,10 @@
     <col class="span3">
   </colgroup>
   <caption>
-    <b><%= begin_date.nil? ? "" : "( #{begin_date.strftime("%d-%b-%Y")} to #{end_date.strftime("%d-%b-%Y")})" %></b>
+    <b><%= begin_date.nil? ? "" : "( #{begin_date.strftime("%d-%b-%Y")} to #{end_date.strftime("%d-%b-%Y")}) week-#{begin_date.to_date.cweek} " %></b>
   </caption>
   <thead>
-  <tr style = "background-color: #A2AFCC;">
+  <tr>
     <th>Name</th>
     <th>Monday</th>
     <th>Tuesday</th>
@@ -21,11 +21,11 @@
   </tr>
   </thead>
   <% if feedbacks.length != 0 %>
-      <% user = feedbacks.to_a.uniq{|u| u.to_id} %>
-      <% user.each do |u| %>
+      <% received_user = feedbacks.to_a.uniq{|u| u.to_id} %>
+      <% received_user.each do |user| %>
           <tr>
-            <td><%= user_name(users,u.to_id) %></td>
-            <% given_feedbacks =  feedbacks.to_a.select{|f|f.to_id == u.to_id}%>
+            <td><%= user_name(users,user.to_id) %></td>
+            <% given_feedbacks =  feedbacks.to_a.select{|f|f.to_id == user.to_id}%>
             <% if given_feedbacks.count == 5%>
                 <% given_feedbacks.each do |feedback|%>
                     <% if feedback.created_at.wday == 1 %>
@@ -38,18 +38,14 @@
                         <td><%= feedback.feedback %></td>
                     <% elsif feedback.created_at.wday == 5 %>
                         <td><%= feedback.feedback %></td>
-                    <% else %>
-                        <td>hi</td>
                     <% end %>
                 <% end %>
             <% else %>
-                <% for i in 2..given_feedbacks.first.created_at.wday %>
+                <% for i in 2..given_feedbacks.to_a.first.created_at.wday %>
                     <td></td>
                 <% end %>
                 <% given_feedbacks.each do |feedback|%>
-                    <% if feedback.created_at.wday == 1 %>
-                        <td><%= feedback.feedback%></td>
-                    <% elsif feedback.created_at.wday == 2 %>
+                    <% if feedback.created_at.wday == 2 %>
                         <td><%= feedback.feedback  %></td>
                     <% elsif feedback.created_at.wday == 3 %>
                         <td><%= feedback.feedback %></td>
@@ -57,8 +53,6 @@
                         <td><%= feedback.feedback %></td>
                     <% elsif feedback.created_at.wday == 5 %>
                         <td><%= feedback.feedback %></td>
-                    <% else %>
-                        <td>hi</td>
                     <% end %>
                 <% end %>
             <% end %>
@@ -91,4 +85,3 @@
       </tr>
   <% end %>
 </table>
-<%#= page_navigation_links feedbacks %>

@@ -29,7 +29,8 @@ class UsersController < ApplicationController
 
   def give_feedback
     feedbacks = logged_in_user.from.where(:feedback => nil)
-    @feedbacks = feedbacks.empty? ? "" : feedbacks.select{|feedback|feedback.created_at.strftime("%a-%b-%Y") == Time.now.strftime("%a-%b-%Y")}
+    @feedbacks = feedbacks.empty? ? "" : feedbacks.select{|feedback|feedback.created_at >= Time.now.beginning_of_day and feedback.created_at <= Time.now.end_of_day}
+    logger.info
   end
 
   def received_feedback
