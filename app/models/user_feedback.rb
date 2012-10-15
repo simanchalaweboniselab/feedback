@@ -22,11 +22,20 @@ class UserFeedback < ActiveRecord::Base
     0..3.times do |i|
       weekday = DateTime.now.wday
       count = 0
-      #self.create(:from_id => params[:from_user], :to_id => params["to_user_#{i}"])
       while(weekday <= 5)
         record << "(#{params[:from_user]}, #{params["to_user_#{i}"]}, '#{Time.now.in_time_zone(TZInfo::Timezone.get('Asia/Kolkata'))+ (count*24*60*60 if count != 0).to_i}')"
         weekday = weekday + 1
         count = count + 1
+      end
+      created_at = Time.now.in_time_zone(TZInfo::Timezone.get('Asia/Kolkata')).next_week + self.get_seconds(Time.now)
+      if (params[:week].to_i >= 2)
+        for j in 2..params[:week].to_i
+          for j in 0..4
+            record << "(#{params[:from_user]}, #{params["to_user_#{i}"]}, '#{created_at}')"
+            created_at =  created_at + 1.days
+          end
+          created_at = created_at.next_week + self.get_seconds(Time.now)
+        end
       end
     end
     sql = "INSERT INTO user_feedbacks (from_id, to_id, created_at) VALUES #{record.join(", ")}"
@@ -52,5 +61,10 @@ class UserFeedback < ActiveRecord::Base
       names = User.where(:id => feedbacks.collect{|feedback|feedback.to_id if feedback.from_id == user.id}).map(&:name).join(', ')
       UserMailer.alert_mail(user, names).deliver
     end
+  end
+
+  def self.get_seconds(time)
+    time = time.in_time_zone(TZInfo::Timezone.get('Asia/Kolkata'))
+    time = ((time.hour)*60*60)+((time.min)*60)+time.sec
   end
 end

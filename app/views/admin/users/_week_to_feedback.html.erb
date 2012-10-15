@@ -1,3 +1,4 @@
+<% given_user = feedbacks.to_a.uniq{|u| u.from_id}#.paginate(:page => params[:page], :per_page => 1) %>
 <table class="table" style="background-color: #64D6C6">
   <colgroup>
     <col class="span3">
@@ -20,43 +21,34 @@
     <th>Friday</th>
   </tr>
   </thead>
-  <% if feedbacks.length != 0 %>
-      <% received_user = feedbacks.to_a.uniq{|u| u.to_id} %>
-      <% received_user.each do |user| %>
+  <% if given_user.length != 0 %>
+      <% given_user.each do |user| %>
           <tr>
-            <td><%= user_name(users,user.to_id) %></td>
-            <% given_feedbacks =  feedbacks.to_a.select{|f|f.to_id == user.to_id}%>
-            <% if given_feedbacks.count == 5%>
-                <% given_feedbacks.each do |feedback|%>
-                    <% if feedback.created_at.wday == 1 %>
-                        <td><%= feedback.feedback%></td>
-                    <% elsif feedback.created_at.wday == 2 %>
-                        <td><%= feedback.feedback %></td>
-                    <% elsif feedback.created_at.wday == 3 %>
-                        <td><%= feedback.feedback %></td>
-                    <% elsif feedback.created_at.wday == 4 %>
-                        <td><%= feedback.feedback %></td>
-                    <% elsif feedback.created_at.wday == 5 %>
-                        <td><%= feedback.feedback %></td>
-                    <% end %>
-                <% end %>
-            <% else %>
-                <% for i in 2..given_feedbacks.to_a.first.created_at.wday %>
+            <td><%= user_name(users,user.from_id) %></td>
+            <% received_feedbacks =  feedbacks.to_a.select{|f|f.from_id == user.from_id}.sort_by{|feedback| feedback.created_at}%>
+            <% count = 0 %>
+            <% for i in 0..4 %>
+                <% feedback = received_feedbacks[count] %>
+                <% if feedback.created_at.wday == i+1 %>
+                    <td><%= feedback.feedback %></td>
+                    <% count = count+1 %>
+                <% else %>
                     <td></td>
-                <% end %>
-                <% given_feedbacks.each do |feedback|%>
-                    <% if feedback.created_at.wday == 2 %>
-                        <td><%= feedback.feedback  %></td>
-                    <% elsif feedback.created_at.wday == 3 %>
-                        <td><%= feedback.feedback %></td>
-                    <% elsif feedback.created_at.wday == 4 %>
-                        <td><%= feedback.feedback %></td>
-                    <% elsif feedback.created_at.wday == 5 %>
-                        <td><%= feedback.feedback %></td>
-                    <% end %>
                 <% end %>
             <% end %>
           </tr>
+      <% end %>
+      <% if given_user.count < 3 %>
+          <% for i in 1..(3 - given_user.count)  %>
+              <tr>
+                <td>&nbsp;</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+          <% end %>
       <% end %>
   <% else%>
       <tr>

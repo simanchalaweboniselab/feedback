@@ -1,0 +1,52 @@
+<% given_user = feedbacks.to_a.uniq{|u| u.from_id} %>
+
+<table class="table" style="background-color: #64D6C6">
+  <colgroup>
+    <col class="span3">
+    <col class="span3">
+  </colgroup>
+  <caption>
+    <b><%= begin_date.nil? ? "" : "( #{begin_date.strftime("%d-%b-%Y")} to #{end_date.strftime("%d-%b-%Y")}) week-#{begin_date.to_date.cweek} " %></b>
+  </caption>
+  <thead>
+  <tr>
+    <th>Contributor</th>
+    <th>Recipients</th>
+  </tr>
+  </thead>
+  <% if given_user.length != 0 %>
+      <% given_user.each do |user| %>
+          <tr>
+            <td><%= user_name(users,user.from_id) %></td>
+            <% received_users = feedbacks.to_a.select{|u| u.from_id == user.from_id} %>
+            <% received_users = received_users.to_a.uniq{|u| u.to_id} %>
+            <td>
+              <% received_users.each do |received_user| %>
+                  <%= user_name(users,received_user.to_id) %>
+              <% end %>
+            </td>
+          </tr>
+      <% end %>
+      <% if given_user.count < 3 %>
+          <% for i in 1..(3 - given_user.count)  %>
+              <tr>
+                <td>&nbsp;</td>
+                <td></td>
+              </tr>
+          <% end %>
+      <% end %>
+  <% else%>
+      <tr>
+        <td>&nbsp;</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>&nbsp;</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>&nbsp;</td>
+        <td></td>
+      </tr>
+  <% end %>
+</table>

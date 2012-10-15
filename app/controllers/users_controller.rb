@@ -23,7 +23,7 @@ class UsersController < ApplicationController
 
   def update_feedback
     feedback = UserFeedback.find(params[:id])
-    feedback.update_attributes(:feedback => params[:feedback])
+    #feedback.update_attributes(:feedback => params[:feedback])
     redirect_to give_feedback_users_path
   end
 

@@ -36,9 +36,9 @@ class Admin::AdminsController < ApplicationController
 
   def feedback
     @feedbacks = UserFeedback.where(:created_at => @begin_date..@end_date)
-    @recipients = @feedbacks.to_a
-    @feedbacks = @feedbacks.to_a.uniq{|feedback| feedback.from_id}
-    @feedbacks = @feedbacks.paginate(:page => params[:page], :per_page => 10)
+    #@recipients = @feedbacks.to_a
+    #@feedbacks = @feedbacks.to_a.uniq{|feedback| feedback.from_id}
+    #@feedbacks = @feedbacks.paginate(:page => params[:page], :per_page => 10)
   end
 
 end

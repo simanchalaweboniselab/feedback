@@ -1,40 +1,33 @@
-<table class="table table-bordered">
+<table class="table">
   <colgroup>
     <col class="span3">
     <col class="span3">
   </colgroup>
-  <% if feedbacks.length == 0 %>
-      <caption>
-        <h2> Not assigned this week</h2>
-        <%= link_to image_tag('/assets/previous.png', :height => '20', :width => '20'), nil, :date => (begin_date.to_date - 1.day), :remote => true, :id => "previous-assigned-feedback" %>
-        <%= begin_date.nil? ? "" : "( #{begin_date} to #{end_date})" %>
-        <%= link_to image_tag('/assets/next.png', :height => '20', :width => '20'), nil, :date => (end_date.to_date + 1.day), :remote => true, :id => "next-assigned-feedback" %>
-      </caption>
-  <% else %>
-      <caption>
-        <h2>Assigned Feedback List</h2>
-        <%= link_to image_tag('/assets/previous.png', :height => '20', :width => '20'), nil, :date => (begin_date.to_date - 1.day), :remote => true, :id => "previous-assigned-feedback" %>
-        <%= begin_date.nil? ? "" : "( #{begin_date} to #{end_date})" %>
-        <%= link_to image_tag('/assets/next.png', :height => '20', :width => '20'), nil, :date => (end_date.to_date + 1.day), :remote => true, :id => "next-assigned-feedback" %>
-      </caption>
-      <thead>
-      <tr style = "background-color: #A2AFCC;">
-        <th>Contributor</th>
-        <th>Recipient</th>
+  <caption>
+    <h2>List of Feedback by (Received)</h2>
+  </caption>
+  <thead>
+  <tr style = "background-color: #A2AFCC; ">
+    <th style="border-right: 1px solid;"><div style="float: left;" ><%= link_to "<<",nil, :class => "btn btn-info", :style => "padding-bottom: -5px;", :remote => true, :id => "previous-assigned-feedback", :date => end_date.prev_month.next_week.strftime("%d-%b-%Y")%></div><div align="center"><h3><%= end_date.strftime("%B-%Y")  %></h3></div></th>
+    <th><div style="float: right;"><%= link_to ">>",nil, :class => "btn btn-info", :style => "padding-bottom: -5px;", :remote => true, :id => "next-assigned-feedback", :date => end_date.advance(:months => 1).beginning_of_month.next_week.strftime("%d-%b-%Y")%></div><div align="center"><h3><%= end_date.next_month.strftime("%B-%Y")%></h3></div></th>
+  </tr>
+  <% for i in 1..5 %>
+      <%
+         end_date = end_date.end_of_week - 2.days
+         begin_date = begin_date.beginning_of_week
+         next_month_end_date = next_month_end_date.end_of_week - 2.days
+         next_month_begin_date = next_month_begin_date.beginning_of_week
+         first_month_feedbacks = feedbacks.select{|f|f.created_at>= begin_date.beginning_of_day and f.created_at <= end_date.end_of_day}
+         second_month_feedbacks = feedbacks.select{|f|f.created_at>= next_month_begin_date.beginning_of_day and f.created_at <= next_month_end_date.end_of_day}
+      %>
+      <tr>
+        <td  style="border-right: 1px solid; border-top: none;"><%= render :partial => "week_assigned_feedback_list", :locals => {:users => users, :feedbacks => first_month_feedbacks,  :begin_date => begin_date, :end_date => end_date } %></td>
+        <td style="border-top: none;"><%= render :partial => "week_assigned_feedback_list", :locals => {:users => users, :feedbacks => second_month_feedbacks, :begin_date => next_month_begin_date, :end_date => next_month_end_date } %></td>
       </tr>
-      </thead>
-      <% feedbacks.each do |feedback| %>
-          <tr>
-            <td><%= link_to user_name(users,feedback.from_id), from_feedback_admin_user_path(feedback.from_id) %></td>
-            <td>
-              <% recipients1 = recipients.select{|r| r.from_id == feedback.from_id} %>
-              <% recipients1 = recipients1.uniq{|r| r.to_id} %>
-              <% recipients1.each do |recipient| %>
-                <%= link_to user_name(users, recipient.to_id), to_feedback_admin_user_path(recipient.to_id) %>&nbsp;&nbsp;&nbsp;
-              <% end %>
-            </td>
-          </tr>
-      <% end %>
+      <% temp = end_date.next_week(:monday)  %>
+      <% begin_date = temp; end_date = end_date.next_week(:friday)  %>
+      <% temp = next_month_end_date.next_week(:monday)  %>
+      <% next_month_begin_date = temp; next_month_end_date = next_month_end_date.next_week(:friday)  %>
   <% end %>
-</table>
-<%= page_navigation_links feedbacks %>
+  </table>
+<%= link_to "Back", admin_users_path, :class => "btn" %>

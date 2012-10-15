@@ -37,7 +37,6 @@ $(document).ready(function(){
     });
 
     $("#previous-given").live("click",function(event){
-        alert($(this).attr("date"));
         $.ajax({
             url: "/admin/users/given_feedback_search",
             type: "GET",
@@ -46,7 +45,6 @@ $(document).ready(function(){
     });
 
     $("#next-given").live("click",function(event){
-        alert($(this).attr("date"));
         $.ajax({
             url: "/admin/users/given_feedback_search",
             type: "GET",
@@ -206,7 +204,7 @@ $(document).ready(function(){
         document.getElementById('save_all_user').style.visibility='visible';
         document.getElementById('message1').style.visibility='visible';
         $("#message").remove();
-        $("#assign_user_content").append('<div class="block-box" id = "feedback-box"><div class="left-column"> <input type="text" class="large from_user" name="from_user" placeholder="Select User"/><input type="text" class="large to_user to_user_first" name="to_user_first" placeholder="Select User" disabled="disabled"/> <input type="text" class="large to_user to_user_second" name="to_user_second" placeholder="Select User" disabled="disabled"/> <input type="text" class="large to_user to_user_third" name="to_user_third" placeholder="Select User" disabled="disabled"/></div><div class="center-column" ><input type="image" src="/assets/cross.png" id="remove-contributor-recipients1"/></div></div>') ;
+        $("#assign_user_content").append('<div class="block-box" id = "feedback-box"><div class="left-column"> <input type="text" class="large from_user" name="from_user" placeholder="Select User"/><input type="text" class="large to_user to_user_first" name="to_user_first" placeholder="Select User" disabled="disabled"/> <input type="text" class="large to_user to_user_second" name="to_user_second" placeholder="Select User" disabled="disabled"/> <input type="text" class="large to_user to_user_third" name="to_user_third" placeholder="Select User" disabled="disabled"/> <select class="week" style="width: 100px"><option value="1">1week</option><option value="2">2week</option><option value="3">3week</option><option value="4">4week</option></select></div><div class="center-column" ><input type="image" src="/assets/cross.png" id="remove-contributor-recipients1"/></div></div>') ;
 
         var ids1 = new Array();
 
@@ -325,11 +323,11 @@ $(document).ready(function(){
         if(flag == 0){
             $(".block-box").each(function(){
                 current = $(this);
-//                $(value).find(".center-column").html('<div class="load"> </div>');
+//                current.find(".center-column").html('<div class="load"> </div>');
                 current.find(".center-column").html('<div class="check"> </div>');
                 $.ajax({
                     url: "/admin/users/create_assign_user",
-                    data: {"from_user": current.find(".from_user").attr("alt"), "to_user_0": current.find(".to_user_first").attr("alt"), "to_user_1": current.find(".to_user_second").attr("alt"), "to_user_2": current.find(".to_user_third").attr("alt")},
+                    data: {"from_user": current.find(".from_user").attr("alt"), "to_user_0": current.find(".to_user_first").attr("alt"), "to_user_1": current.find(".to_user_second").attr("alt"), "to_user_2": current.find(".to_user_third").attr("alt"), "week": current.find(".week option:selected").val()},
                     dataType: "json",
                     success: function(data){
                         if(data["success"]== true){

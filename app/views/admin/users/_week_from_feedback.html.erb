@@ -1,4 +1,4 @@
-<table class="table" style="background-color: #64D6C6">
+<table class="table " style="background-color: rgb(100, 214, 198); color: rgb(34, 34, 34)">
   <colgroup>
     <col class="span3">
     <col class="span3">
@@ -20,8 +20,8 @@
     <th>Friday</th>
   </tr>
   </thead>
-  <% if feedbacks.length != 0 %>
-      <% received_user = feedbacks.to_a.uniq{|u| u.to_id} %>
+  <% received_user = feedbacks.to_a.uniq{|u| u.to_id} %>
+  <% if received_user.length != 0 %>
       <% received_user.each do |user| %>
           <tr>
             <td><%= user_name(users,user.to_id) %></td>
@@ -41,7 +41,7 @@
                     <% end %>
                 <% end %>
             <% else %>
-                <% for i in 2..given_feedbacks.to_a.first.created_at.wday %>
+                <% for i in 2..given_feedbacks.first.created_at.wday %>
                     <td></td>
                 <% end %>
                 <% given_feedbacks.each do |feedback|%>
@@ -85,3 +85,4 @@
       </tr>
   <% end %>
 </table>
+<%#= page_navigation_links feedbacks %>

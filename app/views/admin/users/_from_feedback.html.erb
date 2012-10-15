@@ -8,8 +8,8 @@
   </caption>
   <thead>
   <tr style = "background-color: #A2AFCC; ">
-    <th style="border-right: 1px solid;"><div style="float: left;" ><%= link_to "<<",nil, :class => "btn btn-info", :style => "padding-bottom: -5px;", :remote => true, :id => "previous-given", :date => end_date.strftime("%d-%b-%Y"), :user_id => user.id %></div><div align="center"><h3><%= end_date.strftime("%B-%Y")  %></h3></div></th>
-    <th><div style="float: right;"><%= link_to ">>",nil, :class => "btn btn-info", :style => "padding-bottom: -5px;", :remote => true, :id => "next-given", :date => end_date.advance(:months => 2).beginning_of_month.next_week.strftime("%d-%b-%Y"), :user_id => user.id  %></div><div align="center"><h3><%= end_date.next_month.strftime("%B-%Y")%></h3></div></th>
+    <th style="border-right: 1px solid;"><div style="float: left;" ><%= link_to "<<",nil, :class => "btn btn-info", :style => "padding-bottom: -5px;", :remote => true, :id => "previous-given", :date => end_date.prev_month.next_week.strftime("%d-%b-%Y"), :user_id => user.id %></div><div align="center"><h3><%= end_date.strftime("%B-%Y")  %></h3></div></th>
+    <th><div style="float: right;"><%= link_to ">>",nil, :class => "btn btn-info", :style => "padding-bottom: -5px;", :remote => true, :id => "next-given", :date => end_date.advance(:months => 1).beginning_of_month.next_week.strftime("%d-%b-%Y"), :user_id => user.id  %></div><div align="center"><h3><%= end_date.next_month.strftime("%B-%Y")%></h3></div></th>
   </tr>
   <% for i in 1..5 %>
       <%
