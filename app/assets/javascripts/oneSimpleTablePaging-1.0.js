@@ -77,7 +77,7 @@ $.prototype.extend(
 					paginationHTML += "<a id='tablePagination_firstPage' href='javascript:;' class='button left'>|&lt;</a>";
 					paginationHTML += "<a id='tablePagination_prevPage' href='javascript:;' class='button right'>&lt;&lt;</a>";
 					paginationHTML += "Page";
-					paginationHTML += "<input id='tablePagination_currPage' type='input' value='" + currPageNumber + "' size='1'>";
+					paginationHTML += "<input id='tablePagination_currPage' type='input' value='" + currPageNumber + "' size='10'>";
 					paginationHTML += "of " + totalPages + "&nbsp;&nbsp;&nbsp;";
 					paginationHTML += "<a id='tablePagination_nextPage' href='javascript:;' class='button left'>&gt;&gt;</a>";
 					paginationHTML += "<a id='tablePagination_lastPage' href='javascript:;' class='button right'>&gt;|</a>";
