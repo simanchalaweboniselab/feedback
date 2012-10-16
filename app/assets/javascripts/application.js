@@ -20,6 +20,7 @@
 
 
 $(document).ready(function(){
+    $('.main-table').oneSimpleTablePagination({rowsPerPage:3});
     $("#previous-received").live("click",function(event){
         $.ajax({
             url: "/admin/users/received_feedback_search",
