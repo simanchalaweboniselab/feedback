@@ -1,7 +1,0 @@
-<div class="pull-right">
-  <input type="text" data-behaviour='datepicker' id="datepicker" >
-  <%= link_to "search", nil, :class => "btn btn-info", :style => "margin-top:-9px; margin-left:-4px;", :remote => true, :id => "received-search" , :rel => @user.id %>
-</div>
-<div id="received_feedback">
-  <%= render :partial => "to_feedback", :locals => {:users => @users, :user => @user, :feedbacks => @feedbacks,  :begin_date => @begin_date.strftime("%d-%b-%Y"), :end_date => @end_date.strftime("%d-%b-%Y")} %>
-</div>

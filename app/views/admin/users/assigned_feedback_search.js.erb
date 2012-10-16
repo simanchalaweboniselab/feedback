@@ -1,1 +1,0 @@
-$("#assigned_feedback").html("<%= escape_javascript(render :partial => "assigned_feedback", :locals => {:users => @users, :feedbacks => @feedbacks, :user => @user, :begin_date => @begin_date.strftime("%d-%b-%Y"), :end_date => @end_date.strftime("%d-%b-%Y")}) %>");

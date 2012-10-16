@@ -1,10 +1,10 @@
 class Admin::UsersController < ApplicationController
   before_filter :admin_should_be_login
-  before_filter :find_user, :only => [:to_feedback, :from_feedback, :assigned_feedback, :assigned_feedback_search, :given_feedback_search, :received_feedback_search]
-  before_filter :find_week, :only => [:assigned_feedback_search, :given_feedback_search, :received_feedback_search]
+  before_filter :find_user, :only => [:to_feedback, :from_feedback, :given_feedback_search, :received_feedback_search]
+  before_filter :find_week, :only => [:given_feedback_search, :received_feedback_search]
   before_filter :find_current_week, :only => [:to_feedback, :from_feedback, :assigned_feedback]
   before_filter :all_user
-  before_filter :assigned_user_feedback, :only => [:assigned_feedback, :assigned_feedback_search]
+  #before_filter :assigned_user_feedback, :only => [:assigned_feedback, :assigned_feedback_search]
   before_filter :given_user_feedback, :only => [:from_feedback, :given_feedback_search]
   before_filter :received_user_feedback, :only => [:to_feedback, :received_feedback_search]
 
@@ -44,12 +44,12 @@ class Admin::UsersController < ApplicationController
   def assigned_feedback
   end
 
-  def assigned_feedback_search
-    respond_to do |format|
-      format.js
-      format.html
-    end
-  end
+  #def assigned_feedback_search
+  #  respond_to do |format|
+  #    format.js
+  #    format.html
+  #  end
+  #end
 
   def given_feedback_search
 
@@ -68,12 +68,12 @@ class Admin::UsersController < ApplicationController
 
 
   protected
-
-  def assigned_user_feedback
-    @feedbacks = @user.from.where(:created_at => @begin_date..@end_date)
-    @feedbacks = @feedbacks.to_a.uniq{|feedback| feedback.to_id}
-    @feedbacks = @feedbacks.paginate(:page => params[:page], :per_page => 10)
-  end
+  #
+  #def assigned_user_feedback
+  #  @feedbacks = @user.from.where(:created_at => @begin_date..@end_date)
+  #  @feedbacks = @feedbacks.to_a.uniq{|feedback| feedback.to_id}
+  #  @feedbacks = @feedbacks.paginate(:page => params[:page], :per_page => 10)
+  #end
 
   def given_user_feedback
     @feedbacks =  @user.from.where("created_at BETWEEN '#{@begin_date}' AND '#{@end_date}' ")
