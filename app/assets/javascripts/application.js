@@ -103,61 +103,61 @@ $(document).ready(function(){
         });
     });
 
-    $("#user-received-search").live("click",function(event){
-        if($("#datepicker").val()){
-            $.ajax({
-                url: "/users/received_feedback_search",
-                type: "GET",
-                data: {"date": $("#datepicker").val()}
-            });
-        }
-        else
-        {
-            alert("please enter date in search field");
-        }
-    });
+//    $("#user-received-search").live("click",function(event){
+//        if($("#datepicker").val()){
+//            $.ajax({
+//                url: "/users/received_feedback_search",
+//                type: "GET",
+//                data: {"date": $("#datepicker").val()}
+//            });
+//        }
+//        else
+//        {
+//            alert("please enter date in search field");
+//        }
+//    });
 
-    $("#assigned-search").live("click",function(event){
-        if($("#datepicker").val()){
-            $.ajax({
-                url: "/admin/users/assigned_feedback_search",
-                type: "GET",
-                data: {"date": $("#datepicker").val(), "id": $(this).attr("rel") }
-            });
-        }
-        else
-        {
-            alert("please enter date in search field");
-        }
-    });
+//    $("#assigned-search").live("click",function(event){
+//        if($("#datepicker").val()){
+//            $.ajax({
+//                url: "/admin/users/assigned_feedback_search",
+//                type: "GET",
+//                data: {"date": $("#datepicker").val(), "id": $(this).attr("rel") }
+//            });
+//        }
+//        else
+//        {
+//            alert("please enter date in search field");
+//        }
+//    });
 
-    $("#given-search").live("click",function(event){
-        if($("#datepicker").val()){
-            $.ajax({
-                url: "/admin/users/given_feedback_search",
-                type: "GET",
-                data: {"date": $("#datepicker").val(), "id": $(this).attr("rel") }
-            });
-        }
-        else
-        {
-            alert("please enter date in search field");
-        }
-    });
+//    $("#given-search").live("click",function(event){
+//        if($("#datepicker").val()){
+//            $.ajax({
+//                url: "/admin/users/given_feedback_search",
+//                type: "GET",
+//                data: {"date": $("#datepicker").val(), "id": $(this).attr("rel") }
+//            });
+//        }
+//        else
+//        {
+//            alert("please enter date in search field");
+//        }
+//    });
 
-    $("#received-search").live("click",function(event){
-        if($("#datepicker").val()){
-            $.ajax({
-                url: "/admin/users/received_feedback_search",
-                type: "GET",
-                data: {"date": $("#datepicker").val(), "id": $(this).attr("rel") }
-            });
-        }
-        else
-        {
-            alert("please enter date in search field");
-        }
-    });
+//    $("#received-search").live("click",function(event){
+//        if($("#datepicker").val()){
+//            $.ajax({
+//                url: "/admin/users/received_feedback_search",
+//                type: "GET",
+//                data: {"date": $("#datepicker").val(), "id": $(this).attr("rel") }
+//            });
+//        }
+//        else
+//        {
+//            alert("please enter date in search field");
+//        }
+//    });
 //    $("#received-search").live("click",function(event){
 //        if($("#datepicker").val()){
 //            $.ajax({
@@ -171,19 +171,19 @@ $(document).ready(function(){
 //            alert("please enter date in search field");
 //        }
 //    });
-    $("#assigned-feedback-search").live("click",function(event){
-        if($("#datepicker").val()){
-            $.ajax({
-                url: "/admin/admins/assigned_feedback_search",
-                type: "GET",
-                data: {"date": $("#datepicker").val() }
-            });
-        }
-        else
-        {
-            alert("please enter date in search field");
-        }
-    });
+//    $("#assigned-feedback-search").live("click",function(event){
+//        if($("#datepicker").val()){
+//            $.ajax({
+//                url: "/admin/admins/assigned_feedback_search",
+//                type: "GET",
+//                data: {"date": $("#datepicker").val() }
+//            });
+//        }
+//        else
+//        {
+//            alert("please enter date in search field");
+//        }
+//    });
 
     $(function() {
         $( "#datepicker" ).datepicker({"format": "dd-mm-yyyy", "autoclose": true});

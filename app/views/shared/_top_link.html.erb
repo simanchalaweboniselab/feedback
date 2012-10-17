@@ -26,3 +26,8 @@
       <li > <%=link_to "welcome #{logged_in_user.name} ",nil , :remote => true %></li>
     </ul>
 <% end %>
+<% if !logged_in_user %>
+    <ul class="nav pull-right">
+      <li ><%= link_to "Login", login_path %></li>
+    </ul>
+<% end %>

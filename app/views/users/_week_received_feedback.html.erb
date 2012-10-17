@@ -1,4 +1,6 @@
+
 <% given_user = feedbacks.to_a.uniq{|u| u.from_id}#.paginate(:page => params[:page], :per_page => 1) %>
+<% logger.info "==============================#{given_user.inspect}" %>
 <table class="table main-table" style="background-color: #64D6C6">
   <colgroup>
     <col class="span3">
@@ -26,6 +28,7 @@
           <tr>
             <td><%= user_name(users,user.from_id) %></td>
             <% received_feedbacks =  feedbacks.to_a.select{|f|f.from_id == user.from_id}.sort_by{|feedback| feedback.created_at}%>
+
             <% count = 0 %>
             <% for i in 0..4 %>
                 <% feedback = received_feedbacks[count] %>

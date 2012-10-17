@@ -1,7 +1,10 @@
-<div class="pull-right">
-  <input type="text" data-behaviour='datepicker' id="datepicker" >
-  <%= link_to "search", nil, :class => "btn btn-info", :style => "margin-top:-9px; margin-left:-4px;", :remote => true, :id => "user-received-search" %>
-</div>
+<!--<div class="pull-right">-->
+  <!--<input type="text" data-behaviour='datepicker' id="datepicker" >-->
+  <!--<%#= link_to "search", nil, :class => "btn btn-info", :style => "margin-top:-9px; margin-left:-4px;", :remote => true, :id => "user-received-search" %>-->
+<!--</div>-->
+<!--<div id="user_received_feedback">-->
+<!--<%#= render :partial => "received_feedback", :locals => {:users => @users, :feedbacks => @feedbacks, :end_date => @end_date.strftime("%d-%b-%Y"), :begin_date => @begin_date.strftime("%d-%b-%Y")} %>-->
+<!--</div>-->
 <div id="user_received_feedback">
-  <%= render :partial => "received_feedback", :locals => {:users => @users, :feedbacks => @feedbacks, :end_date => @end_date.strftime("%d-%b-%Y"), :begin_date => @begin_date.strftime("%d-%b-%Y")} %>
+  <%= render :partial => "received_feedback", :locals => {:users => @users, :feedbacks => @feedbacks, :user => logged_in_user,  :begin_date => @begin_date, :end_date =>  @begin_date.end_of_week,:next_month_begin_date => @begin_date.next_week.next_month.beginning_of_month.beginning_of_week , :next_month_end_date => @begin_date.next_week.next_month.beginning_of_month.end_of_week} %>
 </div>
