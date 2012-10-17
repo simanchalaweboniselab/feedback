@@ -73,7 +73,7 @@
   $.fn.accordy.defaults = {
       throttle: false, // Set to true, and include jQuery throttle plugin (http://benalman.com/projects/jquery-throttle-debounce-plugin/)
       throttleTime: 500, // number of ms to wait for throttling
-      useKeybord: true, // use keys defined below to expand / collapse sections
+      useKeyboard: true, // use keys defined below to expand / collapse sections
       keyPressUp: 75, //K
       keyPressDown: 74 //J
       };
