@@ -147,9 +147,9 @@
       showArrows: true, // Show arrows for next/prev image
       movePrev: 'movePrev', // Div id to use for previous button
       moveNext: 'moveNext', // Div id to use for next button
-      useKeybord: true, // use keys defined below to expand / collapse sections
+      useKeyboard: true, // use keys defined below to expand / collapse sections
       auto: true,       // Start slideshow automatically
-      interval: 1000,     // Time between each slide
+      interval: 3000,     // Time between each slide
       initialInterval: 1000  // Initial interval when page loads
       };
 

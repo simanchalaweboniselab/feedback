@@ -37,7 +37,7 @@
 
 .slidyContainer .movePrev, .slidyContainer .moveNext {
 	position: absolute;
-	background: url('arrows.png');
+	background: url('../images/arrows.png');
 	width: 33px;
 	height: 33px;
 	display: inline;
