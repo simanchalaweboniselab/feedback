@@ -20,6 +20,11 @@
 
 
 $(document).ready(function(){
+    $(".slidyContainer").slidy({
+    });
+
+    $(".accordion").accordy({
+    });
     $('.main-table').oneSimpleTablePagination({rowsPerPage:3});
     $("#previous-received").live("click",function(event){
         $.ajax({
