@@ -6,35 +6,38 @@
       <% end %>
     </div>
 <%end%>
-
-<%= form_for @user_session, :html => {:id => "add_pg", :class => "form-horizontal",:style => "margin: auto; width:400px;"} do |f| %>
-    <fieldset>
-      <div id="legend">
+<div class="row">
+  <div class="span5 offset3 login_container" >
+    <%= form_for @user_session, :html => { :class => "form-horizontal"} do |f| %>
         <legend>Login</legend>
-      </div>
-      <div class="control-group">
-        <label class="control-label">
-          <%=f.label :email %>
-        </label>
-        <div class="controls">
-          <%= f.email_field :email, :required => true%>
+        <div class="control-group">
+          <label class="control-label">
+            <%=f.label :email %>
+          </label>
+          <div class="controls">
+            <%= f.email_field :email, :placeholder => "Email"%>
+          </div>
         </div>
-      </div>
-      <div class="control-group">
-        <label class="control-label">
-          <%=f.label :password %>
-        </label>
-        <div class="controls">
-          <%= f.password_field :password%>
+        <div class="control-group">
+          <label class="control-label">
+            <%=f.label :password %>
+          </label>
+          <div class="controls">
+            <%= f.password_field :password %>
+          </div>
         </div>
-      </div>
-      <div class="control-group">
-        <div class="controls">
-          <%= f.submit "Sign In", :class => "btn btn-success" %>
+        <div class="control-group">
+          <div class="controls">
+            <%= f.submit "Log In", :class => "btn btn-success" %>
+            <%= link_to "cancel", root_path, :class => "btn" %>
+          </div>
         </div>
-      </div>
-    </fieldset>
-<% end %>
+    <% end %>
 
-
-
+  </div>
+</div>
+<div class="row">
+  <div class="span10 offset1 webonise_logo">
+    <img src="/assets/weboniselab.png" >
+  </div>
+</div>
