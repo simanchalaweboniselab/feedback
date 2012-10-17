@@ -29,7 +29,7 @@
             <% count = 0 %>
             <% for i in 0..4 %>
                 <% feedback = received_feedbacks[count] %>
-                <% if feedback.created_at.wday == i+1 %>
+                <% if (feedback.created_at.wday == i+1 if !feedback.nil?) %>
                     <td><%= feedback.feedback %></td>
                     <% count = count+1 %>
                 <% else %>

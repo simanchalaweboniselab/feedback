@@ -17,7 +17,7 @@
           <%=f.label :email %>
         </label>
         <div class="controls">
-          <%= f.text_field :email%>
+          <%= f.email_field :email, :required => true%>
         </div>
       </div>
       <div class="control-group">
@@ -25,7 +25,7 @@
           <%=f.label :password %>
         </label>
         <div class="controls">
-          <%= f.password_field :password %>
+          <%= f.password_field :password%>
         </div>
       </div>
       <div class="control-group">

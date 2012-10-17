@@ -30,11 +30,11 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </a>
-      <% if current_user %>
-          <a class="brand" href="/users">Weboniser-Feedback-Weboniser</a>
-      <% else %>
-          <a class="brand" href="/admin/admins">Weboniser-Feedback</a>
-      <% end %>
+      <!--<%# if current_user %>-->
+          <!--<a class="brand" href="/users">Weboniser-Feedback-Weboniser</a>-->
+      <!--<%# else %>-->
+          <a class="brand" href="/">Weboniser-Feedback</a>
+      <%# end %>
       <div class="container nav-collapse">
         <%= render :partial => "shared/top_link"%>
       </div><!--/.nav-collapse -->

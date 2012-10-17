@@ -25,35 +25,17 @@
       <% received_user.each do |user| %>
           <tr>
             <td><%= user_name(users,user.to_id) %></td>
-            <% given_feedbacks =  feedbacks.to_a.select{|f|f.to_id == user.to_id}%>
+            <% given_feedbacks =  feedbacks.to_a.select{|f|f.to_id == user.to_id}.sort_by{|feedback| feedback.created_at}%>
             <% if given_feedbacks.count == 5%>
                 <% given_feedbacks.each do |feedback|%>
-                    <% if feedback.created_at.wday == 1 %>
-                        <td><%= feedback.feedback%></td>
-                    <% elsif feedback.created_at.wday == 2 %>
-                        <td><%= feedback.feedback %></td>
-                    <% elsif feedback.created_at.wday == 3 %>
-                        <td><%= feedback.feedback %></td>
-                    <% elsif feedback.created_at.wday == 4 %>
-                        <td><%= feedback.feedback %></td>
-                    <% elsif feedback.created_at.wday == 5 %>
-                        <td><%= feedback.feedback %></td>
-                    <% end %>
+                    <td><%= (feedback.feedback).nil? ? "N/A" : feedback.feedback %></td>
                 <% end %>
             <% else %>
                 <% for i in 2..given_feedbacks.first.created_at.wday %>
                     <td></td>
                 <% end %>
                 <% given_feedbacks.each do |feedback|%>
-                    <% if feedback.created_at.wday == 2 %>
-                        <td><%= feedback.feedback  %></td>
-                    <% elsif feedback.created_at.wday == 3 %>
-                        <td><%= feedback.feedback %></td>
-                    <% elsif feedback.created_at.wday == 4 %>
-                        <td><%= feedback.feedback %></td>
-                    <% elsif feedback.created_at.wday == 5 %>
-                        <td><%= feedback.feedback %></td>
-                    <% end %>
+                    <td><%= (feedback.feedback).nil? ? "N/A" : feedback.feedback %></td>
                 <% end %>
             <% end %>
           </tr>
