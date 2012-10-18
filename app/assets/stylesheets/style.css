@@ -9,7 +9,7 @@
 }
 
 .left-column{
-    width: 990px;
+    width: 970px;
     height: 28px;
     padding: 10px;
     border-right: thin solid #ddd;
@@ -83,7 +83,7 @@ p.error-p{
 }
 
 .tooltip{
-    margin-left: 90px !important;
+    margin-left: 70px !important;
 }
 
 .cross{
@@ -115,24 +115,62 @@ p.error-p{
     overflow: hidden;
     text-overflow: ellipsis;
 }
-/*.prev, .next {*/
-    /*width: 50px;*/
-    /*text-align: center;*/
-    /*margin-right: 10px;*/
-    /*user-select: none;*/
-   /*-o-user-select:none;*/
-   /*-moz-user-select: none;*/
-   /*-khtml-user-select: none;*/
-   /*-webkit-user-select: none;*/
-/*}*/
-
-/*.prev, .next {*/
-    /*border: 1px solid green;*/
-    /*cursor: pointer;*/
-/*}*/
-
-/*.prev.disabled, .next.disabled {*/
-    /*border: 1px solid red;*/
-    /*cursor: default;*/
-/*}*/
-/*​*/
+.th_bg{
+    background: #333;
+    color: #fff;
+}
+.arrow_btn{
+    background: #84c225;
+    color: #000;
+}
+.table tbody tr:hover td,.table tbody tr:hover th
+{
+    background-color: #84c225 !important;
+}
+.table tbody tr td {
+    border-top: 1px solid #84c225;
+}
+.btn-infos{
+    background: #84c225;
+    color: #000;
+    font-weight: bold;
+}
+.table tbody tr:hover td .btn-infos
+{
+    background: #000;
+       color: #fff;
+}
+.btn-infos:hover
+{
+    background: #fff !important;
+    color: #000 !important;
+}
+#user_table tr td
+{
+    border: 1px solid #84c225;
+}
+.pagination ul > li > a, .pagination ul > li > span {
+    background-color: #84c225;
+    color: #000;
+    border-color: #000;
+}
+.pagination ul > li > a:hover, .pagination ul > .active > span {
+    background-color: #000;
+    color: #84c225;
+}
+.pagination ul > .active > a {
+    color: #84c225;
+}
+.btn-black{
+    background: #000;
+    color: #fff;
+}
+.hero_unit
+{
+    width: 100%;
+    background: #84c225;
+    border-radius: 5px;
+    box-shadow: 0px 1px 8px #000;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}

@@ -16,9 +16,8 @@ class Admin::AdminsController < ApplicationController
     @user = User.create_user(params[:email], params[:name])
     if @user.valid?
       UserMailer.set_password(@user).deliver
-      redirect_to admin_admins_path, :notice => "User created successfully!!!!!!!!!!"
+      redirect_to admin_users_path, :notice => "User created successfully!!!!!!!!!!"
     else
-      logger.info "=========================#{@user}"
       render :add_user
     end
   end

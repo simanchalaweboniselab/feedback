@@ -1,5 +1,5 @@
 <% given_user = feedbacks.to_a.uniq{|u| u.from_id}#.paginate(:page => params[:page], :per_page => 1) %>
-<table class="table main-table" style="background-color: #64D6C6">
+<table class="table main-table" style="background-color: #fff;">
   <colgroup>
     <col class="span3">
     <col class="span3">
@@ -9,9 +9,9 @@
     <col class="span3">
   </colgroup>
   <caption>
-    <b><%= begin_date.nil? ? "" : "( #{begin_date.strftime("%d-%b-%Y")} to #{end_date.strftime("%d-%b-%Y")}) week-#{begin_date.to_date.cweek} " %></b>
+    <h4><%= begin_date.nil? ? "" : "( #{begin_date.strftime("%d-%b-%Y")} to #{end_date.strftime("%d-%b-%Y")}) week-#{begin_date.to_date.cweek} " %></h4>
   </caption>
-  <thead>
+  <thead style="border-bottom: 1px solid #84c225">
   <tr>
     <th>Name</th>
     <th>Monday</th>

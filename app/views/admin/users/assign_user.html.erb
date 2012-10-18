@@ -1,18 +1,19 @@
 <% if get_seconds(Time.now) < 64800 and Time.now.wday >= 1 and Time.now.wday<= 5 %>
-    <div id="message" style="float: left; margin-left: 70px;">
+    <div id="message" style="float: left; margin-left: 70px; background: #84c225;" class="hero-unit">
       <h3>To assign feedback contributor and feedback recipients, please click on "Assign User" button.</h3>
+      <input type="button" value="Assign User" class="btn btn-inverse" id = "assign_user1" />
     </div>
     <input type="button" value="Save All" class="btn btn-info pull-right" style="visibility: hidden;" id = "save_all_user" />
-    <input type="button" value="Assign User" class="btn btn-success pull-right" id = "assign_user" />
+    <input type="button" value="Assign User" class="btn btn-success pull-right" id = "assign_user" style="visibility: hidden;"/>
     <div class="clearfix"></div>
-    <div style="visibility: hidden;" id = "contributor-recipients">
+    <div style="visibility: hidden;" id = "contributor-recipients" >
       <div style="float: left; margin-left: 30px;" ><h3> Feedback Contributor</h3></div>
       <div style="float:left;margin-left: 280px;"><h3> Feedback Recipients</h3></div>
     </div>
     <div class="clearfix"></div>
-    <div class="content" id="assign_user_content">
+    <div class="content hero_unit" id="assign_user_content"  style="visibility: hidden;">
     </div>
     <div align="center" style="visibility: hidden;" id = "message1">(Please click "Assign User" to add new set of fields.)</div>
 <% else %>
-    <div align="center"><h2>Assign to User before 6PM(Monday-Friday)</h2></div>
+    <div align="center hero-unit"><h2>Assign to User before 6PM(Monday-Friday)</h2></div>
 <% end %>

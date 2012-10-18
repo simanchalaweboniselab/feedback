@@ -10,9 +10,9 @@ class UserSessionsController < ApplicationController
     if @user_session.save
       user = User.find_by_email(@user_session.email)
       if user.role == "admin"
-        redirect_to admin_admins_path, :notice => "Successfully logged in."
+        redirect_to admin_users_path, :notice => "Successfully logged in."
       else
-        redirect_to users_path, :notice => "Successfully logged in."
+        redirect_to give_feedback_users_path, :notice => "Successfully logged in."
       end
     else
       render :new

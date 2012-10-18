@@ -1,4 +1,4 @@
-<table class="table">
+<table class="table" style="background: #84c225">
   <colgroup>
     <col class="span3">
     <col class="span3">
@@ -7,9 +7,9 @@
     <h2>List of Feedback by <%= user.name %>(Given)</h2>
   </caption>
   <thead>
-  <tr style = "background-color: #A2AFCC; ">
-    <th style="border-right: 1px solid;"><div style="float: left;" ><%= link_to "<<",nil, :class => "btn btn-info", :style => "padding-bottom: -5px;", :remote => true, :id => "previous-given", :date => end_date.prev_month.next_week.strftime("%d-%b-%Y"), :user_id => user.id %></div><div align="center"><h3><%= end_date.strftime("%B-%Y")  %></h3></div></th>
-    <th><div style="float: right;"><%= link_to ">>",nil, :class => "btn btn-info", :style => "padding-bottom: -5px;", :remote => true, :id => "next-given", :date => end_date.advance(:months => 1).beginning_of_month.next_week.strftime("%d-%b-%Y"), :user_id => user.id  %></div><div align="center"><h3><%= end_date.next_month.strftime("%B-%Y")%></h3></div></th>
+  <tr class="th_bg">
+    <th style="border-right: 1px solid;"><div style="float: left;" ><%= link_to "<<",nil, :class => "btn arrow_btn", :style => "padding-bottom: -5px;", :remote => true, :id => "previous-given", :date => end_date.prev_month.next_week.strftime("%d-%b-%Y"), :user_id => user.id %></div><div align="center"><h3><%= end_date.strftime("%B-%Y")  %></h3></div></th>
+    <th><div style="float: right;"><%= link_to ">>",nil, :class => "btn arrow_btn", :style => "padding-bottom: -5px;", :remote => true, :id => "next-given", :date => end_date.advance(:months => 1).beginning_of_month.next_week.strftime("%d-%b-%Y"), :user_id => user.id  %></div><div align="center"><h3><%= end_date.next_month.strftime("%B-%Y")%></h3></div></th>
   </tr>
   <% for i in 1..5 %>
       <%
@@ -21,8 +21,8 @@
          second_month_feedbacks = feedbacks.select{|f|f.created_at>= next_month_begin_date.beginning_of_day and f.created_at <= next_month_end_date.end_of_day}
       %>
       <tr>
-        <td  style="border-right: 1px solid; border-top: none;"><%= render :partial => "week_from_feedback", :locals => {:users => users, :feedbacks => first_month_feedbacks, :user => user,  :begin_date => begin_date, :end_date => end_date } %></td>
-        <td style="border-top: none;"><%= render :partial => "week_from_feedback", :locals => {:users => users, :feedbacks => second_month_feedbacks, :user => user,  :begin_date => next_month_begin_date, :end_date => next_month_end_date } %></td>
+        <td  style="border-right: 1px solid; border-top: none; width: 50%"><%= render :partial => "week_from_feedback", :locals => {:users => users, :feedbacks => first_month_feedbacks, :user => user,  :begin_date => begin_date, :end_date => end_date } %></td>
+        <td style="border-top: none;width: 50%"><%= render :partial => "week_from_feedback", :locals => {:users => users, :feedbacks => second_month_feedbacks, :user => user,  :begin_date => next_month_begin_date, :end_date => next_month_end_date } %></td>
       </tr>
       <% temp = end_date.next_week(:monday)  %>
       <% begin_date = temp; end_date = end_date.next_week(:friday)  %>

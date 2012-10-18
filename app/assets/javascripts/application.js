@@ -205,12 +205,14 @@ $(document).ready(function(){
         }
     });
 
-    $("#assign_user").live("click",function(){
+    $("#assign_user, #assign_user1").live("click",function(){
         document.getElementById('contributor-recipients').style.visibility='visible';
+        document.getElementById('assign_user').style.visibility='visible';
+        document.getElementById('assign_user_content').style.visibility='visible';
         document.getElementById('save_all_user').style.visibility='visible';
         document.getElementById('message1').style.visibility='visible';
         $("#message").remove();
-        $("#assign_user_content").append('<div class="block-box" id = "feedback-box"><div class="left-column"> <input type="text" class="large from_user" name="from_user" placeholder="Select User" style="width:200px;"/><input type="text" class="large to_user to_user_first" name="to_user_first" placeholder="Select User" disabled="disabled" style="width:200px;"/> <input type="text" class="large to_user to_user_second" name="to_user_second" placeholder="Select User" disabled="disabled" style="width:200px;"/> <input type="text" class="large to_user to_user_third" name="to_user_third" placeholder="Select User" disabled="disabled" style="width:200px;"/> <select class="week" style="width: 100px"><option value="1">1week</option><option value="2">2week</option><option value="3">3week</option><option value="4">4week</option></select></div><div class="center-column" ><input type="image" src="/assets/cross.png" id="remove-contributor-recipients1"/></div></div>') ;
+        $("#assign_user_content").append('<div class="block-box" id = "feedback-box"><div class="left-column"> <input type="text" class="large from_user" name="from_user" placeholder="Select User" style="width:190px;"/><input type="text" class="large to_user to_user_first" name="to_user_first" placeholder="Select User" disabled="disabled" style="width:190px;"/> <input type="text" class="large to_user to_user_second" name="to_user_second" placeholder="Select User" disabled="disabled" style="width:190px;"/> <input type="text" class="large to_user to_user_third" name="to_user_third" placeholder="Select User" disabled="disabled" style="width:190px;"/> <select class="week" style="width: 100px"><option value="1">1week</option><option value="2">2week</option><option value="3">3week</option><option value="4">4week</option></select></div><div class="center-column" ><input type="image" src="/assets/cross.png" id="remove-contributor-recipients1"/></div></div>') ;
 
         var ids1 = new Array();
 

@@ -1,4 +1,4 @@
-<table class="table " style="background-color: rgb(100, 214, 198); color: rgb(34, 34, 34)">
+<table class="table " style="background-color: #fff;" id="given-feedback">
   <colgroup>
     <col class="span3">
     <col class="span3">
@@ -10,7 +10,6 @@
   <caption>
     <b><%= begin_date.nil? ? "" : "( #{begin_date.strftime("%d-%b-%Y")} to #{end_date.strftime("%d-%b-%Y")}) week-#{begin_date.to_date.cweek} " %></b>
   </caption>
-  <thead>
   <tr>
     <th>Name</th>
     <th>Monday</th>
@@ -19,7 +18,6 @@
     <th>Thursday</th>
     <th>Friday</th>
   </tr>
-  </thead>
   <% received_user = feedbacks.to_a.uniq{|u| u.to_id} %>
   <% if received_user.length != 0 %>
       <% received_user.each do |user| %>
