@@ -41,8 +41,8 @@ class Admin::UsersController < ApplicationController
   def from_feedback
   end
 
-  def assigned_feedback
-  end
+  #def assigned_feedback
+  #end
 
   #def assigned_feedback_search
   #  respond_to do |format|
