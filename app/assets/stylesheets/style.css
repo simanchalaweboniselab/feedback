@@ -9,7 +9,7 @@
 }
 
 .left-column{
-    width: 1020px;
+    width: 990px;
     height: 28px;
     padding: 10px;
     border-right: thin solid #ddd;
@@ -83,7 +83,7 @@ p.error-p{
 }
 
 .tooltip{
-    margin-left: 120px !important;
+    margin-left: 90px !important;
 }
 
 .cross{
