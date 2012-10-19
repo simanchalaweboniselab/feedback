@@ -35,13 +35,13 @@ class UsersController < ApplicationController
 
   def update_feedback
     feedback = UserFeedback.find(params[:id])
-    #if feedback.update_attributes(:feedback => params[:feedback])
-    #  respond_to do |format|
-    #    format.js {render :layout => false}
-    #  end
-    #else
-    #  redirect_to give_feedback_users_path
-    #end
+    if feedback.update_attributes(:feedback => params[:feedback])
+      respond_to do |format|
+        format.js {render :layout => false}
+      end
+    else
+      redirect_to give_feedback_users_path
+    end
   end
 
   def give_feedback
