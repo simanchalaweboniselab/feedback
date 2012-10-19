@@ -1,7 +1,7 @@
 <% given_user = feedbacks.to_a.uniq{|u| u.from_id}#.paginate(:page => params[:page], :per_page => 1) %>
 <table class="table main-table" style="background-color: #fff;">
   <colgroup>
-    <col class="span3">
+    <col class="span2">
     <col class="span3">
     <col class="span3">
     <col class="span3">
@@ -9,16 +9,16 @@
     <col class="span3">
   </colgroup>
   <caption>
-    <h4><%= begin_date.nil? ? "" : "( #{begin_date.strftime("%d-%b-%Y")} to #{end_date.strftime("%d-%b-%Y")}) week-#{begin_date.to_date.cweek} " %></h4>
+    <h4><%= begin_date.nil? ? "" : "( #{begin_date.strftime("%d-%b-%Y")} to #{end_date.strftime("%d-%b-%Y")}) #{week_number(begin_date)} " %></h4>
   </caption>
   <thead style="border-bottom: 1px solid #84c225">
   <tr>
     <th>Name</th>
-    <th>Monday</th>
-    <th>Tuesday</th>
-    <th>Wednesday</th>
-    <th>Thursday</th>
-    <th>Friday</th>
+    <th>Mon-<%= begin_date.strftime("%d") %></th>
+    <th>Tue-<%= (begin_date + 1.days) .strftime("%d") %></th>
+    <th>Wed-<%= (begin_date + 2.days) .strftime("%d") %></th>
+    <th>Thu-<%= (begin_date + 3.days) .strftime("%d") %></th>
+    <th>Fri-<%= (begin_date + 4.days) .strftime("%d") %></th>
   </tr>
   </thead>
   <% if given_user.length != 0 %>

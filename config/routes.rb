@@ -6,6 +6,8 @@ Feedback::Application.routes.draw do
     get :new_password, :on => :member
     put :create_password, :on => :member
     put :update_feedback, :on => :member
+    get :reset_password, :on => :member
+    put :update_password, :on => :member
     get :give_feedback, :on => :collection
     get :received_feedback, :on => :collection
     get :received_feedback_search, :on => :collection
@@ -17,6 +19,8 @@ Feedback::Application.routes.draw do
       post :create_user, :on => :collection
       get :assigned_feedback_list, :on => :collection
       get :assigned_feedback_search, :on => :collection
+      get :reset_password, :on => :member
+      put :update_password, :on => :member
     end
     resources :users, :only => [:index] do
       get :assign_user, :on => :collection

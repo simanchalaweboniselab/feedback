@@ -5,7 +5,7 @@
     <col class="span3">
   </colgroup>
   <caption>
-    <h4><%= begin_date.nil? ? "" : "( #{begin_date.strftime("%d-%b-%Y")} to #{end_date.strftime("%d-%b-%Y")}) week-#{begin_date.to_date.cweek} " %></h4>
+    <h4><%= begin_date.nil? ? "" : "( #{begin_date.strftime("%d-%b-%Y")} to #{end_date.strftime("%d-%b-%Y")}) #{week_number(begin_date)} " %></h4>
   </caption>
   <thead style="border-bottom: 1px solid #84c225">
   <tr>

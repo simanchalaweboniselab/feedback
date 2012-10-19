@@ -8,6 +8,19 @@ class Admin::AdminsController < ApplicationController
   def index
   end
 
+  def reset_password
+    @admin = logged_in_user
+  end
+
+  def update_password
+    @admin = logged_in_user
+    if @admin.update_attributes(:password => params[:user][:password], :password_confirmation => params[:user][:password_confirmation])
+      redirect_to admin_users_path, :notice  => "password reset successfully!!!!"
+    else
+      render :reset_password
+    end
+  end
+
   def add_user
     @user = User.new
   end

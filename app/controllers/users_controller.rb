@@ -13,6 +13,18 @@ class UsersController < ApplicationController
       redirect_to new_user_session_path
     end
   end
+  def reset_password
+    @user = logged_in_user
+  end
+  def update_password
+    @user = logged_in_user
+    if @user.update_attributes(:password => params[:user][:password], :password_confirmation => params[:user][:password_confirmation])
+      redirect_to home_index_path,:notice => "password reset successfully!!!!"
+    else
+      render :reset_password
+    end
+  end
+
   def create_password
     if @user.update_attributes(params[:user])
       redirect_to users_path, :notice  => "password created successfully!!!!"

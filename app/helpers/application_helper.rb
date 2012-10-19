@@ -28,6 +28,9 @@ module ApplicationHelper
     time = ((time.hour)*60*60)+((time.min)*60)+time.sec
   end
   def week_number(week)
-    UserFeedback.first.created_at
+    week = ((week.to_date.mjd - UserFeedback.first.created_at.to_date.mjd)/7)+2
+    if (week >= 1)
+      return "week-#{week}"
+    end
   end
 end
