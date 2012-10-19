@@ -1,4 +1,4 @@
-<table class="table table-bordered">
+<table class="table" id="user_table">
   <colgroup>
     <col class="span2">
     <col class="span3">
@@ -9,11 +9,14 @@
     <h2>Weboniser List</h2>
   </caption>
   <thead>
-  <tr style = "background-color: #A2AFCC;">
-    <th>ID</th>
-    <th>Name</th>
-    <th>Email</th>
-    <th>Feedback</th>
+  <tr style = "background-color: #333; color: #fff;">
+    <th style="border-right:1px solid  #84c225;">ID</th>
+    <th style="border-right:1px solid  #84c225;">Name</th>
+    <th style="border-right:1px solid  #84c225;">Email</th>
+    <th style="border-right:1px solid  #84c225;"><div align="center">
+      <%= link_to "Assign User", assign_user_admin_users_path, :class => "btn btn-infos" %>
+    </div>
+    </th>
   </tr>
   </thead>
   <% @users.each do |user| %>
@@ -22,9 +25,11 @@
         <td><%= user.name %></td>
         <td><%= user.email %></td>
         <td>
-          <%= link_to "Received",to_feedback_admin_user_path(user), :class => "btn btn-success" %>
-          <%= link_to "Given",from_feedback_admin_user_path(user), :class => "btn btn-success" %>
-          <%= link_to "Assigned", assigned_feedback_admin_user_path(user), :class => "btn btn-success" %>
+          <div align="center">
+          <%= link_to "Received",to_feedback_admin_user_path(user), :class => "btn btn-infos" %>
+          <%= link_to "Given & Assigned",from_feedback_admin_user_path(user), :class => "btn btn-infos" %>
+          <%#= link_to "Assigned", assigned_feedback_admin_user_path(user), :class => "btn btn-success" %>
+          </div>
         </td>
       </tr>
   <% end %>

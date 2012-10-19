@@ -6,32 +6,37 @@
       <% end %>
     </div>
 <%end%>
-<%= form_tag create_user_admin_admins_path, :id => "add_pg", :class => "form-horizontal",:style => "margin: auto; width:400px;", :method => "POST" do %>
-    <fieldset>
-      <div id="legend">
+<div class="row">
+  <div class="span5 offset3 login_container" >
+    <%= form_tag create_user_admin_admins_path, :class => "form-horizontal", :method => "POST" do %>
         <legend>Create User</legend>
-      </div>
-      <div class="control-group">
-        <label class="control-label">
-          Name
-        </label>
-        <div class="controls">
-          <%= text_field_tag :name, params[:name], :required => true %>
+        <div class="control-group">
+          <label class="control-label">
+            Name
+          </label>
+          <div class="controls">
+            <%= text_field_tag :name, params[:name], :required => true %>
+          </div>
         </div>
-      </div>
-      <div class="control-group">
-        <label class="control-label">
-          Email
-        </label>
-        <div class="controls">
-          <%= email_field_tag :email, params[:email], :required => true %>
+        <div class="control-group">
+          <label class="control-label">
+            Email
+          </label>
+          <div class="controls">
+            <%= email_field_tag :email, params[:email], :required => true %>
+          </div>
         </div>
-      </div>
-      <div class="control-group">
-        <div class="controls">
-          <%= submit_tag "Create User", :class => "btn btn-success" %>
-          <%= link_to "Cancel", admin_admins_path, :class => "btn" %>
+        <div class="control-group">
+          <div class="controls">
+            <%= submit_tag "Create User", :class => "btn btn-inverse" %>
+            <%= link_to "Cancel", admin_users_path, :class => "btn" %>
+          </div>
         </div>
-      </div>
-    </fieldset>
-<% end %>
+    <% end %>
+  </div>
+</div>
+<div class="row">
+  <div class="span10 offset2 webonise_logo">
+    <img src="/assets/weboniselab.png" >
+  </div>
+</div>

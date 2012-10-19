@@ -1,0 +1,68 @@
+<table class="table " style="background-color: #fff;" id="given-feedback">
+  <colgroup>
+    <col class="span3">
+    <col class="span3">
+    <col class="span3">
+    <col class="span3">
+    <col class="span3">
+    <col class="span3">
+  </colgroup>
+  <caption>
+    <b><%= begin_date.nil? ? "" : "( #{begin_date.strftime("%d-%b-%Y")} to #{end_date.strftime("%d-%b-%Y")}) week-#{begin_date.to_date.cweek} " %></b>
+  </caption>
+  <tr>
+    <th>Name</th>
+    <th>Monday</th>
+    <th>Tuesday</th>
+    <th>Wednesday</th>
+    <th>Thursday</th>
+    <th>Friday</th>
+  </tr>
+  <% received_user = feedbacks.to_a.uniq{|u| u.to_id} %>
+  <% if received_user.length != 0 %>
+      <% received_user.each do |user| %>
+          <tr>
+            <td><%= user_name(users,user.to_id) %></td>
+            <% given_feedbacks =  feedbacks.to_a.select{|f|f.to_id == user.to_id}.sort_by{|feedback| feedback.created_at}%>
+            <% if given_feedbacks.count == 5%>
+                <% given_feedbacks.each do |feedback|%>
+                    <td><%= (feedback.feedback).nil? ? "N/A" : feedback.feedback %></td>
+                <% end %>
+            <% else %>
+                <% for i in 2..given_feedbacks.first.created_at.wday %>
+                    <td></td>
+                <% end %>
+                <% given_feedbacks.each do |feedback|%>
+                    <td><%= (feedback.feedback).nil? ? "N/A" : feedback.feedback %></td>
+                <% end %>
+            <% end %>
+          </tr>
+      <% end %>
+  <% else%>
+      <tr>
+        <td>&nbsp;</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>&nbsp;</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>&nbsp;</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+  <% end %>
+</table>
+<%#= page_navigation_links feedbacks %>

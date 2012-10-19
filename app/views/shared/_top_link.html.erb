@@ -8,9 +8,6 @@
     <ul class="nav">
       <li ><%= link_to "Add User", add_user_admin_admins_path %></li>
     </ul>
-    <ul class="nav">
-      <li ><%= link_to "Assign User", assign_user_admin_users_path %></li>
-    </ul>
     <ul class="nav pull-right">
       <li ><%= link_to "logout", logout_path %></li>
     </ul>
@@ -27,5 +24,10 @@
     </ul>
     <ul class="nav pull-right">
       <li > <%=link_to "welcome #{logged_in_user.name} ",nil , :remote => true %></li>
+    </ul>
+<% end %>
+<% if !logged_in_user %>
+    <ul class="nav pull-right">
+      <li ><%= link_to "Login", login_path %></li>
     </ul>
 <% end %>

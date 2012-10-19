@@ -1,0 +1,80 @@
+<% given_user = feedbacks.to_a.uniq{|u| u.from_id}#.paginate(:page => params[:page], :per_page => 1) %>
+<table class="table main-table" style="background: #fff">
+  <colgroup>
+    <col class="span3">
+    <col class="span3">
+    <col class="span3">
+    <col class="span3">
+    <col class="span3">
+    <col class="span3">
+  </colgroup>
+  <caption>
+    <b><%= begin_date.nil? ? "" : "( #{begin_date.strftime("%d-%b-%Y")} to #{end_date.strftime("%d-%b-%Y")}) week-#{begin_date.to_date.cweek} " %></b>
+  </caption>
+  <thead style="border-bottom: 1px solid #84c225">
+  <tr>
+    <th>Name</th>
+    <th>Monday</th>
+    <th>Tuesday</th>
+    <th>Wednesday</th>
+    <th>Thursday</th>
+    <th>Friday</th>
+  </tr>
+  </thead>
+  <% if given_user.length != 0 %>
+      <% given_user.each do |user| %>
+          <tr>
+            <td><%= user_name(users,user.from_id) %></td>
+            <% received_feedbacks =  feedbacks.to_a.select{|f|f.from_id == user.from_id}.sort_by{|feedback| feedback.created_at}%>
+
+            <% count = 0 %>
+            <% for i in 0..4 %>
+                <% feedback = received_feedbacks[count] %>
+                <% if (feedback.created_at.wday == i+1 if !feedback.nil?) %>
+                    <td><%= feedback.feedback %></td>
+                    <% count = count+1 %>
+                <% else %>
+                    <td></td>
+                <% end %>
+            <% end %>
+          </tr>
+      <% end %>
+      <% if given_user.count < 3 %>
+          <% for i in 1..(3 - given_user.count)  %>
+              <tr>
+                <td>&nbsp;</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+          <% end %>
+      <% end %>
+  <% else%>
+      <tr>
+        <td>&nbsp;</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>&nbsp;</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>&nbsp;</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+  <% end %>
+</table>

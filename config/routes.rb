@@ -1,5 +1,7 @@
 Feedback::Application.routes.draw do
 
+  get "home/index"
+
   resources :users, :only => [:index] do
     get :new_password, :on => :member
     put :create_password, :on => :member
@@ -21,12 +23,12 @@ Feedback::Application.routes.draw do
       get :get_from_user_list, :on => :collection
       get :get_to_user_list, :on => :collection
       get :create_assign_user, :on => :collection
-      get :assigned_feedback_search, :on => :collection
+      #get :assigned_feedback_search, :on => :collection
       get :given_feedback_search, :on => :collection
       get :received_feedback_search, :on => :collection
       get :to_feedback, :on => :member
       get :from_feedback, :on => :member
-      get :assigned_feedback, :on => :member
+      #get :assigned_feedback, :on => :member
     end
   end
   resources :user_sessions, :only => [:new, :create, :destroy]
@@ -82,7 +84,7 @@ Feedback::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  root :to => 'admin/admins#index'
+  root :to => 'home#index'
 
   # See how all your routes lay out with "rake routes"
 

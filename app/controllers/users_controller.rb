@@ -23,13 +23,18 @@ class UsersController < ApplicationController
 
   def update_feedback
     feedback = UserFeedback.find(params[:id])
-    feedback.update_attributes(:feedback => params[:feedback])
-    redirect_to give_feedback_users_path
+    if feedback.update_attributes(:feedback => params[:feedback])
+      respond_to do |format|
+        format.js {render :layout => false}
+      end
+    else
+      redirect_to give_feedback_users_path
+    end
   end
 
   def give_feedback
     feedbacks = logged_in_user.from.where(:feedback => nil)
-    @feedbacks = feedbacks.empty? ? "" : feedbacks.select{|feedback|feedback.created_at.strftime("%a-%b-%Y") == Time.now.strftime("%a-%b-%Y")}
+    @feedbacks = feedbacks.empty? ? "" : feedbacks.select{|feedback|feedback.created_at >= Time.now.beginning_of_day and feedback.created_at <= Time.now.end_of_day}
   end
 
   def received_feedback

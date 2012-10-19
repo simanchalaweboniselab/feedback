@@ -32,18 +32,13 @@ class ApplicationController < ActionController::Base
   end
 
   def find_current_week
-    date = Date.today
-    weekday = date.wday
-    end_weekday = 6 - weekday
-    @begin_date = date.to_datetime.in_time_zone('UTC').beginning_of_day - weekday*24*60*60
-    @end_date = date.to_datetime.in_time_zone('UTC').end_of_day + end_weekday*24*60*60
+    @begin_date= Time.now.beginning_of_month.next_week.prev_month.beginning_of_month.beginning_of_week
+    @end_date = @begin_date.advance(:months => 2).end_of_month.end_of_week
   end
 
   def find_week
-    weekday=params[:date].to_date.wday
-    end_weekday = 6 - weekday
-    @begin_date = params[:date].to_date.to_datetime.in_time_zone('UTC').beginning_of_day - weekday*24*60*60
-    @end_date = params[:date].to_date.to_datetime.in_time_zone('UTC').end_of_day + end_weekday*24*60*60
+    @begin_date = params[:date].to_date.to_datetime.in_time_zone('UTC').beginning_of_month.beginning_of_week
+    @end_date = params[:date].to_date.to_datetime.in_time_zone('UTC').beginning_of_month.end_of_week.advance(:months => 2).beginning_of_month.end_of_week
   end
 
   def all_user
