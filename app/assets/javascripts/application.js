@@ -20,29 +20,6 @@
 
 
 $(document).ready(function(){
-    var thumbs = $("ul li img");
-
-    for (var i = 0, ii = thumbs.length; i < ii; i++){
-        if (thumbs[i].title && thumbs[i].title.length > 0)
-        {
-            var imgtitle = thumbs[i].title;
-            $(thumbs[i]).wrap('<div class="wrapper" />').
-                after('<div class=\'caption\'>' + imgtitle + '</div>').
-                removeAttr('title');
-
-        }
-    }
-
-    $('.wrapper').hover(
-        function(){
-            $(this).find('img').animate({opacity: ".6"}, 300);
-            $(this).find('.caption').animate({top:"-100%"}, 300);
-        },
-        function(){
-            $(this).find('img').animate({opacity: "1.0"}, 300);
-            $(this).find('.caption').animate({top:"100%"}, 100);
-        }
-    );
     $(".slidyContainer").slidy({
     });
 
@@ -231,6 +208,7 @@ $(document).ready(function(){
     $("#assign_user, #assign_user1").live("click",function(){
         document.getElementById('contributor-recipients').style.visibility='visible';
         document.getElementById('assign_user').style.visibility='visible';
+        document.getElementById('back-btn').style.visibility='visible';
         document.getElementById('assign_user_content').style.visibility='visible';
         document.getElementById('save_all_user').style.visibility='visible';
         document.getElementById('message1').style.visibility='visible';
