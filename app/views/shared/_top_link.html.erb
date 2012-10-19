@@ -12,7 +12,7 @@
       <li ><%= link_to "logout", logout_path %></li>
     </ul>
     <ul class="nav pull-right">
-      <li ><%= link_to "Reset Password",  reset_password_admin_admin_path(logged_in_user) %></li>
+      <li ><%= link_to "Change Password",  reset_password_admin_admin_path(logged_in_user) %></li>
     </ul>
 <% end %>
 <% if current_user %>
@@ -26,7 +26,7 @@
       <li ><%= link_to "logout", logout_path %></li>
     </ul>
     <ul class="nav pull-right">
-      <li ><%= link_to "Reset Password",   reset_password_user_path(logged_in_user) %></li>
+      <li ><%= link_to "Change Password",   reset_password_user_path(logged_in_user) %></li>
     </ul>
     <ul class="nav pull-right">
       <li > <%=link_to "welcome #{logged_in_user.name} ",nil , :remote => true %></li>

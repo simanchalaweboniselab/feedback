@@ -1,49 +1,47 @@
 <%# if @feedbacks.length != 0%>
 <%# if get_seconds(Time.now) >= 64800  and get_seconds(Time.now) <= 82800 %>
-    <div class="row  ">
-      <div class="span12 feedback_Container table_padding ">
-        <table class="table" id="table_changes">
-          <% if @feedbacks.length == 0 %>
-              <caption class="feedback_Container_Caption">
-                Not Assigned for today!
-              </caption>
-          <% else %>
-              <caption class="feedback_Container_Caption">
-                FEEDBACK For WEEKDAY- <%= Time.now.wday %>(<%= Time.now.strftime("%d-%b-%Y")%>)
-              </caption>
-              <thead>
-              <tr>
-                <th>NAME</th>
-                <th>FEEDBACK</th>
-                <th></th>
+<div align="center" style="display: none" id="message1">
+  <h2> Thanks For Your Feedback</h2>
+</div>
+<div class="row  ">
+  <div class="span12 feedback_Container table_padding ">
+    <table class="table" id="table_changes">
+      <% if @feedbacks.length == 0 %>
+          <caption class="feedback_Container_Caption">
+            Not Assigned for today!
+          </caption>
+      <% else %>
+          <caption class="feedback_Container_Caption">
+            FEEDBACK For WEEKDAY- <%= Time.now.wday %>(<%= Time.now.strftime("%d-%b-%Y")%>)
+          </caption>
+          <thead>
+          <tr>
+            <th>NAME</th>
+            <th>FEEDBACK</th>
+            <th></th>
+          </tr>
+          </thead>
+          <% @feedbacks.each do |feedback| %>
+              <tr id="feedback-row<%= feedback.id%>" style="background: #fff;">
+                <%= form_tag "/users/#{feedback.id}/update_feedback", :method => "PUT", :remote => true, :html => { :'data-type' => 'html', :id => 'feedback_form' } do %>
+                    <td><%= user_name(@users, feedback.to_id) %></td>
+                    <td>
+                      <%= text_field_tag :feedback, params[:feedback], :size => 50, :maxlength => 50, :required => true, :placeholder => "For e.g. Good, Superb, Fantastic", :class => "feedback_f" %>
+                      <span class="error tooltip-inner space" style="display: none;">spaces are not allowed</span>
+                    </td>
+                    <td><%= submit_tag "Submit", :class => "btn btn-infos", :style => "font-weight=bold;" %></td>
+                <% end %>
               </tr>
-              </thead>
-              <% @feedbacks.each do |feedback| %>
-                  <tr id="feedback-row<%= feedback.id%>" style="background: #fff;">
-                    <%= form_tag "/users/#{feedback.id}/update_feedback", :method => "PUT", :remote => true, :html => { :'data-type' => 'html', :id => 'feedback_form' } do %>
-                        <td><%= user_name(@users, feedback.to_id) %></td>
-                        <td><%= text_field_tag :feedback, params[:feedback], :size => 50, :maxlength => 50, :required => true, :onkeyup => "nospaces(this)" %></td>
-                        <td><%= submit_tag "SUBMIT", :class => "btn btn-infos", :style => "font-weight=bold;" %></td>
-                    <% end %>
-                  </tr>
-              <% end %>
           <% end %>
-        </table>
-      </div>
-    </div>
+      <% end %>
+    </table>
+  </div>
+</div>
 <%# else %>
-    <!--<div align="center" class="hero_unit"><h2> Feedback time between 6:00 PM TO 11:00 PM </h2></div>-->
+<!--<div align="center" class="hero_unit"><h2> Feedback time between 6:00 PM TO 11:00 PM </h2></div>-->
 <%# end %>
 <div class="row">
   <div class="span10 offset2 webonise_logo">
     <img src="/assets/weboniselab.png" >
   </div>
 </div>
-<script type="text/javascript">
-    function nospaces(feedback){
-        if(feedback.value.match(/\s/g)){
-            alert('Sorry, you are not allowed to enter any spaces');
-            feedback.value=feedback.value.replace(/\s/g,'');
-        }
-    }
-</script>

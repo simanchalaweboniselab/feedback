@@ -20,6 +20,15 @@
 
 
 $(document).ready(function(){
+
+    $('.feedback_f').live("keydown",function(event){
+              if(event.keyCode == 32)
+              {
+                  $(this).parent().find(".space").show();
+                  event.preventDefault()
+              }
+          })
+
     $(".slidyContainer").slidy({
     });
 

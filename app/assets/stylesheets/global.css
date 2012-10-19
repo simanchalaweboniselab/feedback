@@ -1,15 +1,17 @@
 
+
 @font-face {
-    font-family: 'BebasNeueRegular';
-    src: url('../../assets/font/BebasNeue-webfont.eot');
-    src: url('../../assets/font/BebasNeue-webfont.eot?#iefix') format('embedded-opentype'),
-    url('../../assets/font/BebasNeue-webfont.woff') format('woff'),
-    url('../../assets/font/BebasNeue-webfont.ttf') format('truetype'),
-    url('../../assets/font/BebasNeue-webfont.svg') format('svg');
+    font-family: 'gliscor_gothicregular';
+    src: url('../../assets/font/gligoth-webfont.eot');
+    src: url('../../assets/font/gligoth-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../../assets/font/gligoth-webfont.woff') format('woff'),
+         url('../../assets/font/gligoth-webfont.ttf') format('truetype'),
+         url('../../assets/font/gligoth-webfont.svg#gliscor_gothicregular') format('svg');
     font-weight: normal;
     font-style: normal;
 
 }
+
 
 body
 {
@@ -19,21 +21,14 @@ body
 }
 .body_bg
 {
-    background: rgb(136,193,93); /* Old browsers */
-    background: -moz-radial-gradient(center, ellipse cover, rgba(136,193,93,1) 0%, rgba(252,252,252,1) 99%); /* FF3.6+ */
-    background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,rgba(136,193,93,1)), color-stop(99%,rgba(252,252,252,1))); /* Chrome,Safari4+ */
-    background: -webkit-radial-gradient(center, ellipse cover, rgba(136,193,93,1) 0%,rgba(252,252,252,1) 99%); /* Chrome10+,Safari5.1+ */
-    background: -o-radial-gradient(center, ellipse cover, rgba(136,193,93,1) 0%,rgba(252,252,252,1) 99%); /* Opera 12+ */
-    background: -ms-radial-gradient(center, ellipse cover, rgba(136,193,93,1) 0%,rgba(252,252,252,1) 99%); /* IE10+ */
-    background: radial-gradient(ellipse at center, rgba(136,193,93,1) 0%,rgba(252,252,252,1) 99%); /* W3C */
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#88c15d', endColorstr='#fcfcfc',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+    background: #e0efcd;
     height: 100%;
     width: 100%;
 }
 .feedback_Container
 {
     margin-top: 50px;
-    background: #84c225;
+    background: #e0efcd;
     border-radius: 10px;
     box-shadow: 0px 1px 8px #000;
     color: #fff;
@@ -41,10 +36,10 @@ body
 }
 .feedback_Container_Caption
 {
-    font-family: Droid serif;
+    font-family:arial;
     color: #000;
     text-align: center;
-    font-size: 28px;
+    font-size: 30px;
     letter-spacing: 2px;
     text-shadow: 0px 1px 1px #fff;
     margin-bottom: 20px;
@@ -67,6 +62,8 @@ body
 #table_changes thead tr th
 {
     text-align: center;
+    font-family: arial;
+    font-size: 18px;
 }
 #table_changes tbody tr
 {
@@ -76,17 +73,19 @@ body
 #table_changes tbody tr td
 {
     line-height: 35px;
-    font-family: droid sans;
+    font-family: Arial;
     /*text-shadow: 0px 1px 0px #7a7a7a;*/
     font-weight: bold;
     text-align: center;
-    font-size: 16px;
+    font-size: 14px;
 }
 
 #table_changes tbody tr td .btn
 {
     box-shadow: 0px 1px 3px #000;
     font-weight: bold;
+    font-family: arial;
+    font-size: 14px;
 }
 
 .webonise_logo
@@ -104,7 +103,7 @@ body
 
     margin-top: 50px;
     padding-top: 25px;
-    background: #84c225;
+    background: #e0efcd;
     border-radius: 10px;
     box-shadow: 0px 1px 8px #000;
     color: #fff;
@@ -116,7 +115,7 @@ body
 .login_container form div label
 {
     color: #000;
-    font-family: droid serif;
+    font-family: arial;
     text-shadow: 0px 1px 1px #5c5c5c;
     font-size: 16px;
 
@@ -127,11 +126,11 @@ body
 }
 .login_container form legend
 {
-    border-bottom: 1px solid #fff ;
+    border-bottom: 1px solid #000;
     width: 100%;
     text-align: center;
     padding-bottom: 20px;
-    font-family: sans ;
+    font-family: arial ;
     font-size: 30px;
     color: #000;
     text-shadow: 0px 1px 1px #5c5c5c;
@@ -142,13 +141,6 @@ body
 .homepage_container
 {
     /*margin-top: 50px;*/
-    background: -moz-radial-gradient(center, ellipse cover, rgba(128,242,187,1) 0%, rgba(183,193,176,0) 100%); /* FF3.6+ */
-    background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,rgba(128,242,187,1)), color-stop(100%,rgba(183,193,176,0))); /* Chrome,Safari4+ */
-    background: -webkit-radial-gradient(center, ellipse cover, rgba(128,242,187,1) 0%,rgba(183,193,176,0) 100%); /* Chrome10+,Safari5.1+ */
-    background: -o-radial-gradient(center, ellipse cover, rgba(128,242,187,1) 0%,rgba(183,193,176,0) 100%); /* Opera 12+ */
-    background: -ms-radial-gradient(center, ellipse cover, rgba(128,242,187,1) 0%,rgba(183,193,176,0) 100%); /* IE10+ */
-    background: radial-gradient(ellipse at center, rgba(128,242,187,1) 0%,rgba(183,193,176,0) 100%); /* W3C */
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#80f2bb', endColorstr='#00b7c1b0',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
     border-radius: 10px;
     box-shadow: 0 1px 8px #000;
     color: #fff;
@@ -209,7 +201,7 @@ body
 {
     color: #000;
     text-align: center;
-    font-size: 20px;
+    font-size: 18px;
     font-weight: bold;
     font-family: Arial;
     line-height: 30px;
@@ -218,6 +210,7 @@ body
 {
     color: #000;
     text-align: justify;
+    font-size: 14px !important;
 }
 
 #heading .span12
@@ -229,12 +222,13 @@ body
 }
 #heading .span12 h1
 {
-    font-size: 45px;
-    font-family: bebasneueregular ;
+    font-size: 36px;
+    font-family: arial;
     letter-spacing: 2px;
     font-weight: bold;
-    text-shadow: 0px 2px 5px #000;
-    color: #fff;
+    text-shadow: 0px 2px 5px #fff;
+    color: #000;
+    text-transform: uppercase;
 }
 
 @media (min-width: 768px) and (max-width: 979px) {
