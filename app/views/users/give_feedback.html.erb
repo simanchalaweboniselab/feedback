@@ -1,7 +1,7 @@
 <%# if @feedbacks.length != 0%>
 <%# if get_seconds(Time.now) >= 64800  and get_seconds(Time.now) <= 82800 %>
-<div align="center" style="display: none" id="message1">
-  <h2> Thanks For Your Feedback</h2>
+<div align="center" style=" " id="message">
+  <h2> Thanks for Your Feedback</h2>
 </div>
 <div class="row  ">
   <div class="span12 feedback_Container table_padding ">
@@ -12,7 +12,7 @@
           </caption>
       <% else %>
           <caption class="feedback_Container_Caption">
-            FEEDBACK For WEEKDAY- <%= Time.now.wday %>(<%= Time.now.strftime("%d-%b-%Y")%>)
+            FEEDBACK for WEEKDAY- <%= Time.now.wday %>(<%= Time.now.strftime("%d-%b-%Y")%>)
           </caption>
           <thead>
           <tr>
