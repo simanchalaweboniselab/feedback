@@ -1,4 +1,4 @@
-<% if get_seconds(Time.now) > 64800 and Time.now.wday >= 1 and Time.now.wday<= 5 %>
+<% if get_seconds(Time.now) < 64800 and Time.now.wday >= 1 and Time.now.wday<= 5 %>
     <div id="message" style="float: left; margin-left: 70px; background: #e0efcd;" class="hero-unit">
       <h3>To assign feedback contributor and feedback recipients, please click on "Assign User" button.</h3>
       <input type="button" value="Assign User" class="btn btn-inverse" id = "assign_user1" />
