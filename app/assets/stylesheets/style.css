@@ -181,3 +181,38 @@ p.error-p{
 /*a.left {background: #333 !important; color: #fff !important;}*/
 /*a.right:hover { border-left: solid 1px #999; }*/
 /*a.right {background: #333 !important; color: #fff !important;}*/
+
+/* CSS Document */
+*{padding:0; margin:0;}
+#main {width:790px; overflow:hidden; margin:0 auto; -moz-border-radius: 5px;
+-webkit-border-radius: 5px; padding:30px; margin-top:30px; }
+#main h3 {font-family:'Droid Sans', arial; font-weight:bold; font-size:50px; letter-spacing:-2px; text-shadow:1px 2px 2px #999; padding:0 8px;}
+#main p {font-family:Georgia, arial; font-size:16px; background:#ececec;-moz-border-radius: 5px;
+-webkit-border-radius: 5px; padding:20px;  border:1px solid #d2d2d2; clear:both; margin:25px 8px;  text-shadow:0 1px 1px #fff; }
+#main a {float:right; font-family:Georgia; font-size:16px; text-decoration:none; color:#990000; position:relative; left:-20px; padding:25px 0 0 0;}
+
+
+#main ul {padding:0; margin:0;}
+#main li {float:left; list-style:none; padding:10px; margin:10px; line-height:10px; width:218px; height:218px; overflow:hidden; border:1px solid #d2d2d2;-moz-border-radius: 5px;
+-webkit-border-radius: 5px; background:#ececec;}
+/*dynamically added*/
+#main div.wrapper{width:218px; height:218px; overflow:hidden; position:relative;  }
+
+/*generic style for all div */
+#main div.caption {font-family:'Reenie Beanie',arial; font-weight:bold; font-size:20px;  letter-spacing:-2px; position:relative; text-align:center; padding:70px 15px 15px 15px; min-height:125px; color:#d20000; text-shadow:0 1px 1px #999; text-transform:capitalize; line-height:16px;}
+
+/*white fade*/
+#main ul li:nth-child(1) div.caption {font-family:'Reenie Beanie',arial; font-weight:bold; font-size:34px; letter-spacing:-2px; position:relative; text-align:center; padding:55px 15px 15px 15px; background:#000; min-height:125px; color:#d20000; text-shadow:0 1px 1px #999; text-transform:capitalize; line-height:16px;}
+/*city*/
+#main ul li:nth-child(2) div.caption {font-family: arial; font-weight:bold; font-size:26px; position:relative; text-align:center; padding:45px 15px 15px 15px; background:url(images/city.png); min-height:125px; color:#fff; text-shadow:1px 2px 1px #999; letter-spacing:-1px; text-transform:capitalize; line-height:16px;}
+/*wood*/
+#main ul li:nth-child(3) div.caption {font-family: Georgia, arial; font-weight:bold; font-size:24px; font-style:italic; position:relative; text-align:center; padding:35px 15px 15px 15px; background:url(images/wood.png); min-height:125px; color:#fff; text-shadow:1px 2px 1px #000; letter-spacing:-1px; text-transform:capitalize; line-height:16px;}
+/*grass*/
+
+
+
+
+
+
+
+

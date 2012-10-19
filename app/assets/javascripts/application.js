@@ -20,6 +20,29 @@
 
 
 $(document).ready(function(){
+    var thumbs = $("ul li img");
+
+    for (var i = 0, ii = thumbs.length; i < ii; i++){
+        if (thumbs[i].title && thumbs[i].title.length > 0)
+        {
+            var imgtitle = thumbs[i].title;
+            $(thumbs[i]).wrap('<div class="wrapper" />').
+                after('<div class=\'caption\'>' + imgtitle + '</div>').
+                removeAttr('title');
+
+        }
+    }
+
+    $('.wrapper').hover(
+        function(){
+            $(this).find('img').animate({opacity: ".6"}, 300);
+            $(this).find('.caption').animate({top:"-100%"}, 300);
+        },
+        function(){
+            $(this).find('img').animate({opacity: "1.0"}, 300);
+            $(this).find('.caption').animate({top:"100%"}, 100);
+        }
+    );
     $(".slidyContainer").slidy({
     });
 
