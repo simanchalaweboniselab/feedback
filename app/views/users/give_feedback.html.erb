@@ -1,5 +1,5 @@
 <%# if @feedbacks.length != 0%>
-<%# if get_seconds(Time.now) >= 64800  and get_seconds(Time.now) <= 82800 %>
+<% if get_seconds(Time.now) >= 64800  and get_seconds(Time.now) <= 82800 %>
 <div align="center" style="display: none;" id="message">
   <h2> Thanks for Your Feedback</h2>
 </div>
@@ -37,9 +37,9 @@
     </table>
   </div>
 </div>
-<%# else %>
-<!--<div align="center" class="hero_unit"><h2> Feedback time between 6:00 PM TO 11:00 PM </h2></div>-->
-<%# end %>
+<% else %>
+<div align="center" class="hero_unit"><h2> Feedback time between 6:00 PM TO 11:00 PM </h2></div>
+<% end %>
 <div class="row">
   <div class="span10 offset2 webonise_logo">
     <img src="/assets/weboniselab.png" >
