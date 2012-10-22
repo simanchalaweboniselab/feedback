@@ -20,6 +20,9 @@
 
 
 $(document).ready(function(){
+    $(window).load(function() {
+        $('#slider').nivoSlider();
+    });
 
     $('.feedback_f').live("keydown",function(event){
         if(event.keyCode == 32)
