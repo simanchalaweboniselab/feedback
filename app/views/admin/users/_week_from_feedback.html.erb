@@ -19,7 +19,7 @@
     <th>Fri-<%= (begin_date + 4.days) .strftime("%d") %></th>
   </tr>
   <% received_user = feedbacks.to_a.uniq{|u| u.to_id} %>
-  <% if received_user.length != 0 %>
+  <%# if received_user.length != 0 %>
       <% received_user.each do |user| %>
           <tr>
             <td><%= user_name(users,user.to_id) %></td>
@@ -38,31 +38,41 @@
             <% end %>
           </tr>
       <% end %>
-  <% else%>
-      <tr>
-        <td>&nbsp;</td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td>&nbsp;</td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td>&nbsp;</td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-      </tr>
-  <% end %>
+      <% for i in received_user.length..2 %>
+          <tr>
+            <td>&nbsp;</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+      <% end %>
+  <%# else%>
+      <!--<tr>-->
+        <!--<td>&nbsp;</td>-->
+        <!--<td></td>-->
+        <!--<td></td>-->
+        <!--<td></td>-->
+        <!--<td></td>-->
+        <!--<td></td>-->
+      <!--</tr>-->
+      <!--<tr>-->
+        <!--<td>&nbsp;</td>-->
+        <!--<td></td>-->
+        <!--<td></td>-->
+        <!--<td></td>-->
+        <!--<td></td>-->
+        <!--<td></td>-->
+      <!--</tr>-->
+      <!--<tr>-->
+        <!--<td>&nbsp;</td>-->
+        <!--<td></td>-->
+        <!--<td></td>-->
+        <!--<td></td>-->
+        <!--<td></td>-->
+        <!--<td></td>-->
+      <!--</tr>-->
+  <%# end %>
 </table>
 <%#= page_navigation_links feedbacks %>

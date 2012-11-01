@@ -1,6 +1,6 @@
 class Admin::UsersController < ApplicationController
   before_filter :admin_should_be_login
-  before_filter :find_user, :only => [:to_feedback, :from_feedback, :given_feedback_search, :received_feedback_search]
+  before_filter :find_user, :only => [:to_feedback, :from_feedback, :given_feedback_search, :received_feedback_search, :delete_user, :reset_password]
   before_filter :find_week, :only => [:given_feedback_search, :received_feedback_search]
   before_filter :find_current_week, :only => [:to_feedback, :from_feedback, :assigned_feedback]
   before_filter :all_user
@@ -41,15 +41,17 @@ class Admin::UsersController < ApplicationController
   def from_feedback
   end
 
-  #def assigned_feedback
-  #end
+  def delete_user
+    @user.to.delete_all
+    @user.from.delete_all
+    @user.delete
+    redirect_to admin_users_path
+  end
 
-  #def assigned_feedback_search
-  #  respond_to do |format|
-  #    format.js
-  #    format.html
-  #  end
-  #end
+  def reset_password
+    UserMailer.password_reset_mail(@user).deliver
+    redirect_to admin_users_path
+  end
 
   def given_feedback_search
 

@@ -54,8 +54,8 @@ class UserFeedback < ActiveRecord::Base
   end
 
   def self.alert_mail
-    #feedbacks = self.where("created_at >=  '#{Time.now - (1*7*24*60*60)}' AND feedback is NULL")
-    feedbacks = self.where(:created_at => Time.now.in_time_zone(TZInfo::Timezone.get('Asia/Kolkata')).beginning_of_day..Time.now.in_time_zone(TZInfo::Timezone.get('Asia/Kolkata')).end_of_day)
+    feedbacks = self.where("created_at BETWEEN '#{Time.now.beginning_of_day}' AND '#{Time.now.end_of_day}' AND feedback is NULL")
+    #feedbacks = self.where(:created_at => Time.now.in_time_zone(TZInfo::Timezone.get('Asia/Kolkata')).beginning_of_day..Time.now.in_time_zone(TZInfo::Timezone.get('Asia/Kolkata')).end_of_day)
     users = User.where(:id => feedbacks.collect{|feedback| feedback.from_id}.uniq)
     users.each do |user|
       names = User.where(:id => feedbacks.collect{|feedback|feedback.to_id if feedback.from_id == user.id}).map(&:name).join(', ')

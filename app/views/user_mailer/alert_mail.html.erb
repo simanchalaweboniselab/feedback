@@ -1,5 +1,6 @@
-Hi <%= @user.name %>,
-  Please, give the feedback to the these people <%= @names %>.
-  click on the below link.
-<%= link_to "feedback","http://feedback.weboapps.com/users/give_feedback", :target => "_blank" %>
-Kindly ignore the mail, if you had already given the today's feedback.
+<p>Dear <%= @user.name %>,</p>
+<p>You are requested to give the feedback to the following people: <%= @names %>.</p>
+<p><%= link_to "Click here to give feedback.","http://feedback.weboapps.com/users/give_feedback", :target => "_blank" %></p>
+<p>&nbsp;</p>
+<p>Thank You</p>
+<p>Webonise Team</p>

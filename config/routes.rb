@@ -2,15 +2,19 @@ Feedback::Application.routes.draw do
 
   get "home/index"
 
-  resources :users, :only => [:index] do
+  resources :users, :only => [] do
     get :new_password, :on => :member
     put :create_password, :on => :member
     put :update_feedback, :on => :member
-    get :reset_password, :on => :member
+    get :change_password, :on => :member
     put :update_password, :on => :member
+    put :update_reset_password, :on => :member
+    get :reset_password, :on => :member
     get :give_feedback, :on => :collection
     get :received_feedback, :on => :collection
     get :received_feedback_search, :on => :collection
+    get :forgot_password, :on => :collection
+    post :forgot_password_reset, :on => :collection
   end
 
   namespace :admin do
@@ -32,6 +36,8 @@ Feedback::Application.routes.draw do
       get :received_feedback_search, :on => :collection
       get :to_feedback, :on => :member
       get :from_feedback, :on => :member
+      delete :delete_user, :on => :member
+      get :reset_password, :on => :member
       #get :assigned_feedback, :on => :member
     end
   end

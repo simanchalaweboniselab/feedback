@@ -24,11 +24,12 @@
         <td><%= user.id %></td>
         <td><%= user.name %></td>
         <td><%= user.email %></td>
-        <td>
+        <td style="width: 450px !important;">
           <div align="center">
           <%= link_to "Received",to_feedback_admin_user_path(user), :class => "btn btn-infos" %>
           <%= link_to "Given & Assigned",from_feedback_admin_user_path(user), :class => "btn btn-infos" %>
-          <%#= link_to "Assigned", assigned_feedback_admin_user_path(user), :class => "btn btn-success" %>
+          <%= link_to "Delete", delete_user_admin_user_path(user), :method => "DELETE", :class => "btn btn-infos",  :confirm => "Are you sure you want to delete #{user.name}?" %>
+          <%= link_to "Reset Passsword", reset_password_admin_user_path(user), :class => "btn btn-infos" %>
           </div>
         </td>
       </tr>

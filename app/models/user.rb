@@ -2,8 +2,8 @@ class User < ActiveRecord::Base
   attr_accessible :name, :email, :password, :role, :password_confirmation
   acts_as_authentic
 
-  has_many :from, :class_name => UserFeedback, :foreign_key => :from_id
-  has_many :to, :class_name => UserFeedback, :foreign_key => :to_id
+  has_many :from, :class_name => UserFeedback, :foreign_key => :from_id, :dependent => :destroy
+  has_many :to, :class_name => UserFeedback, :foreign_key => :to_id, :dependent => :destroy
 
   validates :name, :email, :password, :presence => true;
   validates :password, :length => {:minimum => 4}

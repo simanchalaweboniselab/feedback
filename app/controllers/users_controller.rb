@@ -1,19 +1,19 @@
 class UsersController < ApplicationController
-  before_filter :user_should_be_login, :except => [:new_password, :create_password]
-  before_filter :find_user_by_perishable_token, :only => [:new_password, :create_password]
+  before_filter :user_should_be_login, :except => [:new_password, :create_password, :forgot_password, :forgot_password_reset, :reset_password, :update_reset_password]
+  before_filter :find_user_by_perishable_token, :only => [:new_password, :create_password, :reset_password, :update_reset_password]
   before_filter :find_current_week, :only => [:given_feedback, :received_feedback]
   before_filter :find_week, :only => [:given_feedback_search, :received_feedback_search]
   before_filter :all_user, :only => [:give_feedback, :received_feedback, :received_feedback_search]
   before_filter :received_user_feedback, :only => [:received_feedback, :received_feedback_search]
 
-  def index
-  end
+  #def index
+  #end
   def new_password
     if !@user
       redirect_to new_user_session_path
     end
   end
-  def reset_password
+  def change_password
     @user = logged_in_user
   end
   def update_password
@@ -21,7 +21,7 @@ class UsersController < ApplicationController
     if @user.update_attributes(:password => params[:user][:password], :password_confirmation => params[:user][:password_confirmation])
       redirect_to home_index_path,:notice => "password reset successfully!!!!"
     else
-      render :reset_password
+      render :change_password
     end
   end
 
@@ -30,6 +30,34 @@ class UsersController < ApplicationController
       redirect_to users_path, :notice  => "password created successfully!!!!"
     else
       render :new_password
+    end
+  end
+
+  def forgot_password
+  end
+
+  def forgot_password_reset
+    if @user = User.find_by_email(params[:email])
+      UserMailer.password_reset_mail(@user).deliver
+      redirect_to home_index_path, :notice => "You will receive an email with instructions about how to reset your password shortly."
+    else
+      redirect_to forgot_password_users_path, :flash => { :error => "Enter a valid email address" }
+    end
+  end
+
+  def reset_password
+    if @user.nil?
+      redirect_to home_index_path
+    end
+  end
+  def update_reset_password
+    if @user.update_attributes(params[:user])
+      #redirect_to logout_path(@user)
+      @user_session = UserSession.find
+      @user_session.destroy
+      redirect_to home_index_path, :notice  => "password reset successfully"
+    else
+      render :reset_password
     end
   end
 
