@@ -27,7 +27,7 @@ class UsersController < ApplicationController
 
   def create_password
     if @user.update_attributes(params[:user])
-      redirect_to users_path, :notice  => "password created successfully!!!!"
+      redirect_to  home_index_path, :notice  => "password created successfully!!!!"
     else
       render :new_password
     end
